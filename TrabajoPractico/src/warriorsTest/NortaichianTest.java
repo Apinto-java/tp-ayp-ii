@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import warriors.Nortaichian;
 import warriors.Radaiteran;
+import warriors.Reralopes;
 import warriors.Warrior;
+import warriors.Wrives;
 import weapons.Bow;
 import weapons.Weapon;
 
@@ -109,5 +111,27 @@ public class NortaichianTest {
 		Assert.assertEquals(0, nortaichian.attack(), 0.00);
 	}
 	
-	// falta ataque de otras razas
+	@Test
+	public void nortaichianRecibeAtaqueDeWrivesYMuere() {
+		
+		nortaichian.receiveAttackFrom(new Wrives());
+		
+		Assert.assertEquals(0, nortaichian.getHP(), 0.0);
+	}
+	
+	@Test
+	public void nortaichianRecibeAtaqueDeRadaiteranYQuedaEn10() {
+		
+		nortaichian.receiveAttackFrom(new Radaiteran());
+		
+		Assert.assertEquals(10, nortaichian.getHP(), 0.0);
+	}
+	
+	@Test
+	public void nortaichianRecibeAtaqueDeReralopesYQuedaEn9() {
+		
+		nortaichian.receiveAttackFrom(new Reralopes());
+		
+		Assert.assertEquals(39, nortaichian.getHP(), 0.0);
+	}
 }
