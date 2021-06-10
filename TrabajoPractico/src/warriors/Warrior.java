@@ -2,7 +2,7 @@ package warriors;
 
 import weapons.Weapon;
 
-public abstract class Warrior {
+public abstract class Warrior extends MilitaryUnit{
 
 	private double hp;
 	private Weapon weapon;
