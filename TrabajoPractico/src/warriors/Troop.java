@@ -1,8 +1,10 @@
 package warriors;
 
-import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class Troop extends MilitaryUnit {
+	
+	PriorityQueue<Warrior> tropa;
 	
 	@Override
 	public void attack(Warrior anotherWarrior) {
