@@ -12,19 +12,21 @@ public class Radaiteran extends Warrior {
 	}
 
 	@Override
-	public int attack() {
+	public void attack(Warrior anotherWarrior) {
 		
-		return super.getWeapon().use() + (3 * amountOfAttacks++);
+		double damage = super.getWeapon().use() + (3 * amountOfAttacks++);
+		
+		anotherWarrior.receiveAttack(damage);
 	}
 
 	@Override
-	public void receiveAttackFrom(Warrior anotherWarrior) {
+	public void receiveAttack(double damage) {
 		
-		if (this.getHP() >= 0)
-			super.reduceHP(anotherWarrior.attack());
+		super.reduceHP(damage);
 	}
 
 	// No ocurre nada en un Radaiteran.
 	@Override
-	public void rest() {}
+	public void rest() {
+	}
 }

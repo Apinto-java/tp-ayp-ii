@@ -6,6 +6,7 @@ import org.junit.Test;
 import warriors.Nortaichian;
 import warriors.Radaiteran;
 import warriors.Reralopes;
+import warriors.TestBuddy;
 import warriors.Warrior;
 import warriors.Wrives;
 import weapons.Shuriken;
@@ -14,54 +15,64 @@ import weapons.Weapon;
 public class RadaiteranTest {
 
 	Warrior radaiteran = new Radaiteran();
-	
+	Warrior testBuddy = new TestBuddy();
+
 	@Test
 	public void unRadaiteranComienzaCon36DeVidaYUnShuriken() {
-		
+
 		Assert.assertEquals(36, radaiteran.getHP(), 0.0);
-		
+
 		Class<? extends Shuriken> shuriken = new Shuriken().getClass();
 		Class<? extends Weapon> esUnArmaDeRadaiteran = radaiteran.getWeapon().getClass();
-		
+
 		Assert.assertEquals(shuriken, esUnArmaDeRadaiteran);
 	}
-	
+
 	@Test
 	public void unRadaiteranOcasiona56DeDanioBase() {
-		
-		Assert.assertEquals(56, radaiteran.attack());
+
+		radaiteran.attack(testBuddy);
+
+		// 500 - 56 = 444
+		Assert.assertEquals(444, testBuddy.getHP(), 0.01);
 	}
-	
+
 	@Test
-	public void atacar4VecesElevaDanioDeRadaiteranA68Puntos() {
-		
+	public void atacar4VecesElevaDanioDeRadaiteranA65Puntos() {
+
 		for (int i = 1; i <= 4; i++)
-			radaiteran.attack();
+			radaiteran.attack(testBuddy);
 		
-		Assert.assertEquals(68, radaiteran.attack());
+		// (1) 56 + 3 * 0 = 56
+		// (2) 56 + 3 * 1 = 59
+		// (3) 56 + 3 * 2 = 62
+		// (4) 56 + 3 * 3 = 65
+		
+		// 500 - 56 - 59 - 62 - 68 = 500 - 245 = 255
+		Assert.assertEquals(258, testBuddy.getHP(), 0.01);
 	}
-	
+
 	@Test
 	public void radaiteranRecibeAtaqueDeWrivesYMuere() {
 		
-		radaiteran.receiveAttackFrom(new Wrives());
-		
+		new Wrives().attack(radaiteran);
+
 		Assert.assertEquals(0, radaiteran.getHP(), 0.0);
 	}
-	
+
 	@Test
 	public void radaiteranRecibeAtaqueDeNortaichianYQuedaEn18() {
-		
-		radaiteran.receiveAttackFrom(new Nortaichian());
+
+		new Nortaichian().attack(radaiteran);
 		
 		Assert.assertEquals(18, radaiteran.getHP(), 0.0);
 	}
-	
+
 	@Test
 	public void radaiteranRecibeAtaqueDeReralopesYQuedaEn9() {
-		
-		radaiteran.receiveAttackFrom(new Reralopes());
-		
+
+		new Reralopes().attack(radaiteran);
+
 		Assert.assertEquals(9, radaiteran.getHP(), 0.0);
 	}
 }

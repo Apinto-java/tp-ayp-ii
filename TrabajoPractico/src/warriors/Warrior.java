@@ -13,9 +13,9 @@ public abstract class Warrior {
 		this.weapon = weapon;
 	}
 	
-	public abstract int attack();
+	public abstract void attack(Warrior anotherWarrior);
 	
-	public abstract void receiveAttackFrom(Warrior anotherWarrior);
+	public abstract void receiveAttack(double damage);
 	
 	public abstract void rest();
 	
@@ -26,13 +26,15 @@ public abstract class Warrior {
 	
 	public void reduceHP(double damage) {
 		
-		if (this.hp - damage >= 0)
-			this.hp -= damage;
+		this.hp -= damage;
+		
+		if(this.hp < 0)
+			this.hp = 0;
 	}
 	
-	public void increaseHP(double d) {
+	public void increaseHP(double healing) {
 		
-		this.hp += d;
+		this.hp += healing;
 	}
 	
 	public Weapon getWeapon(){

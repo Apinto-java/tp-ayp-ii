@@ -14,7 +14,7 @@ public class Reralopes extends Warrior {
 	}
 
 	@Override
-	public int attack() {
+	public void attack(Warrior anotherWarrior) {
 		
 		// resets the iterators
 		if(misses == 2 && hits == 2) {
@@ -22,39 +22,41 @@ public class Reralopes extends Warrior {
 			hits = 0;
 		}
 		
+		double damage;
+		
 		// every 4, it misses 2 and hits other 2
 		if (misses < 2 && hits < 2) {
 			
-			if( (int)Math.random()*4 <= 1 ) {
+			if( (int)(Math.random() * 4) <= 1 ) {
 				// attack missed!
 				misses++;
-				calculateDamage();
-				return 0;
+				damage = 0;
 				
 			} else {
 				
 				// attack hit!
 				hits++;
-				return calculateDamage();
+				damage = calculateDamage();
 			}
 			
 		} else if (misses < 2) {
 			// attack missed!
 			misses++;
-			calculateDamage();
-			return 0;
+			damage = 0;
 			
 		} else {
 			// attack hit!
 			hits++;
-			return calculateDamage();
+			damage = calculateDamage();
 		}
+		
+		anotherWarrior.receiveAttack(damage);
 	}
 
 	@Override
-	public void receiveAttackFrom(Warrior anotherWarrior) {
+	public void receiveAttack(double damage) {
 
-		super.reduceHP(anotherWarrior.attack());
+		super.reduceHP(damage);
 
 		buff = 0;
 	}
@@ -69,7 +71,7 @@ public class Reralopes extends Warrior {
 
 	private int calculateDamage() {
 		// just to calculate damage, and reduce buff
-		if (buff < 0) {
+		if (buff > 0) {
 			buff--;
 			return super.getWeapon().use() * 2;
 		} else {

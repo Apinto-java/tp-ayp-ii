@@ -8,37 +8,41 @@ public class Wrives extends Warrior {
 	private boolean peaceful = false;
 
 	public Wrives() {
-		
+
 		super(108, new Magic());
 	}
 
 	@Override
-	public int attack() {
-		
+	public void attack(Warrior anotherWarrior) {
+
+		double damage;
+
 		if (this.peaceful)
-			return 0;
+			damage = 0;
+		else {
+			
+			this.doubleAttack = !this.doubleAttack;
 
-		this.doubleAttack = ! this.doubleAttack;
+			damage = super.getWeapon().use();
 
-		int damage = super.getWeapon().use();
-
-		if (doubleAttack)
-			damage *= 2;
+			if (doubleAttack)
+				damage *= 2;
+		}
 		
-		return damage;
+		anotherWarrior.receiveAttack(damage);
 	}
 
 	@Override
-	public void receiveAttackFrom(Warrior anotherWarrior) {
+	public void receiveAttack(double damage) {
 
-		super.reduceHP(anotherWarrior.attack() * 2);
+		super.reduceHP(damage * 2);
 
 		peaceful = false;
 	}
 
 	@Override
 	public void rest() {
-		
+
 		peaceful = true;
 
 		super.increaseHP(50);

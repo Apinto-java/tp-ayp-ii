@@ -4,134 +4,190 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import warriors.Nortaichian;
-import warriors.Radaiteran;
-import warriors.Reralopes;
+import warriors.TestBuddy;
 import warriors.Warrior;
-import warriors.Wrives;
 import weapons.Bow;
 import weapons.Weapon;
 
 public class NortaichianTest {
 
 	Warrior nortaichian = new Nortaichian();
-	
+	Warrior testBuddy = new TestBuddy();
+
 	@Test
 	public void unNortaichianComienzaCon66DeVidaYUnBow() {
-		
+
 		Assert.assertEquals(66, nortaichian.getHP(), 0.01);
-		
+
 		Class<? extends Bow> bow = new Bow().getClass();
 		Class<? extends Weapon> esUnArmaDeNortaichian = nortaichian.getWeapon().getClass();
-		
+
 		Assert.assertEquals(bow, esUnArmaDeNortaichian);
 	}
-	
+
 	@Test
 	public void unNortaichianOcasiona18DeDanioBase() {
-		
-		Assert.assertEquals(18, nortaichian.attack());
+
+		// HP testBuddy = 500
+		// 500 - 18 = 482
+		nortaichian.attack(testBuddy);
+
+		Assert.assertEquals(482, testBuddy.getHP(), 0.01);
 	}
-	
+
 	@Test
 	public void unNortaichianRecuperaSaludAlAtacar() {
-		
+
 		// Queda con 10 de vida.
-		nortaichian.receiveAttackFrom(new Radaiteran());
-		
-		Assert.assertEquals(10, nortaichian.getHP(), 0.0);
-		
-		nortaichian.attack();
-		
+		nortaichian.receiveAttack(56);
+
+		Assert.assertEquals(10, nortaichian.getHP(), 0.01);
+
+		nortaichian.attack(testBuddy);
+
 		Assert.assertEquals(12.64, nortaichian.getHP(), 0.01);
 	}
-	
+
 	@Test
 	public void unNortaichianSeRecuperaCompletamenteAtacando() {
-		
+
 		// Queda con 10 de vida.
-		nortaichian.receiveAttackFrom(new Radaiteran());
-		
+		nortaichian.receiveAttack(56);
+
 		Assert.assertEquals(10, nortaichian.getHP(), 0.0);
-		
-		while (nortaichian.getHP() <= 65.0)
-			nortaichian.attack();
-		
+
+		while (nortaichian.getHP() <= 65.0) {
+
+			if (testBuddy.getHP() <= 0)
+				testBuddy = new TestBuddy();
+
+			nortaichian.attack(testBuddy);
+		}
 		Assert.assertEquals(66, nortaichian.getHP(), 1.00);
 	}
-	
+
 	@Test
 	public void unNortaichianAlSerAtacadoMultiplicaPorDosSuDanioDe18() {
-		
-		// Queda con 10 de vida.
-		nortaichian.receiveAttackFrom(new Radaiteran());
-		
-		Assert.assertEquals(10, nortaichian.getHP(), 0.0);
-		
-		Assert.assertEquals(36, nortaichian.attack(), 0.00);
-	}
-	
-	@Test 
-	public void elDanioDobleDelNortaichianSoloDuraDosTurnos() {
-		
-		Warrior radaiteran = new Radaiteran();
-		
-		nortaichian.receiveAttackFrom(radaiteran);
-		
-		Assert.assertEquals(36, nortaichian.attack(), 0.00);
-		Assert.assertEquals(36, nortaichian.attack(), 0.00);
-		
-		Assert.assertEquals(18, nortaichian.attack(), 0.00);
-	}
-	
-	@Test
-	public void recuperaTodaSuVidaAlDescansar(){
 
-		nortaichian.receiveAttackFrom(new Radaiteran());
+		// Queda con 10 de vida.
+		nortaichian.receiveAttack(56);
+
+		Assert.assertEquals(10, nortaichian.getHP(), 0.0);
+
+		nortaichian.attack(testBuddy);
+
+		// 500 - 18*2 = 500 - 36 = 464
+		Assert.assertEquals(464, testBuddy.getHP(), 0.00);
+	}
+
+	@Test
+	public void elDanioDobleDelNortaichianSoloDuraDosTurnos() {
+
+		nortaichian.receiveAttack(10);
+
+		nortaichian.attack(testBuddy);
+
+		Assert.assertEquals(464, testBuddy.getHP(), 0.00);
+
+		nortaichian.attack(testBuddy);
+
+		// 464 - 36 = 428
+		Assert.assertEquals(428, testBuddy.getHP(), 0.00);
+
+		nortaichian.attack(testBuddy);
+
+		// 428 - 18 = 410
+		Assert.assertEquals(410, testBuddy.getHP(), 0.00);
+	}
+
+	@Test
+	public void recuperaTodaSuVidaAlDescansar() {
+
+		nortaichian.receiveAttack(10);
 
 		nortaichian.rest();
 
 		Assert.assertEquals(66, nortaichian.getHP(), 0.00);
 	}
-	
+
 	@Test
 	public void alDescansarSeVuelvePiedraYRecibeMenosDanio() {
-		
+
 		nortaichian.rest();
-		
-		nortaichian.receiveAttackFrom(new Radaiteran());
-		
-		Assert.assertEquals(38, nortaichian.getHP(), 0.00);
+
+		nortaichian.receiveAttack(10);
+
+		// 66 - 10/2 = 66 - 5 = 61
+		Assert.assertEquals(61, nortaichian.getHP(), 0.00);
 	}
-	
+
 	@Test
-	public void alDescansarSeVuelvePiedraYNoAtaca(){
-		
+	public void alDescansarSeVuelvePiedraYNoAtaca() {
+
 		nortaichian.rest();
-		
-		Assert.assertEquals(0, nortaichian.attack(), 0.00);
+
+		nortaichian.attack(testBuddy);
+
+		Assert.assertEquals(500, testBuddy.getHP(), 0.00);
 	}
-	
+
 	@Test
-	public void nortaichianRecibeAtaqueDeWrivesYMuere() {
-		
-		nortaichian.receiveAttackFrom(new Wrives());
-		
-		Assert.assertEquals(0, nortaichian.getHP(), 0.0);
+	public void elDanioDobleDelNortaichianNoSeRecuperaSiNoSeAgoto() {
+
+		nortaichian.receiveAttack(10);
+
+		nortaichian.attack(testBuddy);
+
+		Assert.assertEquals(464, testBuddy.getHP(), 0.00);
+
+		nortaichian.receiveAttack(10);
+
+		nortaichian.attack(testBuddy);
+
+		// 464 - 36 = 428
+		Assert.assertEquals(428, testBuddy.getHP(), 0.00);
+
+		nortaichian.attack(testBuddy);
+
+		// 428 - 18 = 410
+		Assert.assertEquals(410, testBuddy.getHP(), 0.00);
 	}
-	
+
 	@Test
-	public void nortaichianRecibeAtaqueDeRadaiteranYQuedaEn10() {
+	public void elNortaichianDePiedraDuraSoloDosTurnos() {
+
+		nortaichian.rest();
+
+		nortaichian.receiveAttack(10);
+
+		// recibe mitad del daño
+		Assert.assertEquals(61, nortaichian.getHP(), 0.00);
+
+		nortaichian.attack(testBuddy);
+
+		// no recibe ataque
+		Assert.assertEquals(500, testBuddy.getHP(), 0.01);
+
+		nortaichian.receiveAttack(10);
+
+		// recibe mitad del daño
+		Assert.assertEquals(56, nortaichian.getHP(), 0.00);
+
+		nortaichian.attack(testBuddy);
+
+		// no recibe ataque, termina el estado de piedra
+		Assert.assertEquals(500, testBuddy.getHP(), 0.01);
 		
-		nortaichian.receiveAttackFrom(new Radaiteran());
-		
-		Assert.assertEquals(10, nortaichian.getHP(), 0.0);
+		nortaichian.receiveAttack(10);
+
+		// recibe el daño completo
+		Assert.assertEquals(46, nortaichian.getHP(), 0.00);
+
+		nortaichian.attack(testBuddy);
+
+		// al recibir daño, activa su poder de dañar doble
+		Assert.assertEquals(464, testBuddy.getHP(), 0.01);
 	}
-	
-	@Test
-	public void nortaichianRecibeAtaqueDeReralopesYQuedaEn9() {
-		
-		nortaichian.receiveAttackFrom(new Reralopes());
-		
-		Assert.assertEquals(39, nortaichian.getHP(), 0.0);
-	}
+
+	// falta ataque de otras razas
 }
