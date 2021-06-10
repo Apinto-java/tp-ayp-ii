@@ -8,17 +8,23 @@ public class Troop extends MilitaryUnit {
 	
 	@Override
 	public void attack(Warrior anotherWarrior) {
-		//TODO
+		Warrior attacker = tropa.peek();
+		attacker.attack(anotherWarrior);
 	}
 
 	@Override
 	public void receiveAttack(double damage) {
-		//TODO
+		
+		Warrior defender = tropa.peek();
+		defender.receiveAttack(damage);
+		
+		if(defender.getHP() == 0)
+			tropa.remove();
 	}
 
 	@Override
 	public void rest() {
-		//TODO
+		tropa.peek().rest();
 	}
 	
 }
