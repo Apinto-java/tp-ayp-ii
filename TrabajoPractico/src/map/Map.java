@@ -1,4 +1,4 @@
-package mapa;
+package map;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;

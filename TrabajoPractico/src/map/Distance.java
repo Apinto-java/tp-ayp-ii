@@ -1,4 +1,4 @@
-package mapa;
+package map;
 
 public class Distance implements Comparable<Distance>{
 
