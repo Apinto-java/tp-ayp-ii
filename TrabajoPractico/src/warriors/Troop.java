@@ -4,7 +4,11 @@ import java.util.PriorityQueue;
 
 public class Troop extends MilitaryUnit {
 	
-	PriorityQueue<Warrior> tropa;
+	private PriorityQueue<Warrior> tropa;
+	
+	public void addWarrior(Warrior warrior) {
+		tropa.add(warrior);
+	}
 	
 	@Override
 	public void attack(Warrior anotherWarrior) {
@@ -19,12 +23,26 @@ public class Troop extends MilitaryUnit {
 		defender.receiveAttack(damage);
 		
 		if(defender.getHP() == 0)
-			tropa.remove();
+			tropa.poll();
 	}
 
 	@Override
 	public void rest() {
-		tropa.peek().rest();
+		//TODO @return nuevaColaPrioridad
+	}
+	
+	/**
+	 * 
+	 * @return total HP of this troop
+	 */
+	public double getTroopHP() {
+		double hp = 0;
+		
+		for(Warrior warrior : tropa) {
+			hp += warrior.getHP();
+		}
+		
+		return hp;
 	}
 	
 }
