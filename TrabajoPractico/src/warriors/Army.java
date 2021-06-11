@@ -12,16 +12,16 @@ public class Army extends MilitaryUnit {
 	
 	@Override
 	public void attack(Warrior anotherWarrior) {
-		//TODO
+		army.peek().attack(anotherWarrior);
 	}
 
 	@Override
 	public void receiveAttack(double damage) {
-		//TODO
+		army.peek().receiveAttack(damage);
 	}
 
 	@Override
 	public void rest() {
-		//TODO
+		army.peek().rest();
 	}
 }
