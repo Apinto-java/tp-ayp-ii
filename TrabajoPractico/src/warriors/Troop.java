@@ -4,45 +4,51 @@ import java.util.PriorityQueue;
 
 public class Troop extends MilitaryUnit {
 	
-	private PriorityQueue<Warrior> tropa;
+	private PriorityQueue<Warrior> troop;
 	
 	public void addWarrior(Warrior warrior) {
-		tropa.add(warrior);
+		
+		this.troop.add(warrior);
 	}
 	
 	@Override
 	public void attack(Warrior anotherWarrior) {
-		Warrior attacker = tropa.peek();
-		attacker.attack(anotherWarrior);
+		
+		Warrior firstWarrior = this.troop.peek();
+		
+		firstWarrior.attack(anotherWarrior);
 	}
 
 	@Override
 	public void receiveAttack(double damage) {
 		
-		Warrior defender = tropa.peek();
-		defender.receiveAttack(damage);
+		Warrior firstWarrior = this.troop.peek();
 		
-		if(defender.getHP() == 0)
-			tropa.poll();
+		firstWarrior.receiveAttack(damage);
+		
+		if(firstWarrior.getHealthPoints() == 0)
+			this.troop.poll();
 	}
 
+	// Ojo que es una cola de prioridad, no sé si es iterable como tal.
 	@Override
 	public void rest() {
-		//TODO @return nuevaColaPrioridad
+		
+		for(Warrior warrior : this.troop)
+			warrior.rest();
 	}
 	
 	/**
 	 * 
 	 * @return total HP of this troop
 	 */
-	public double getTroopHP() {
-		double hp = 0;
+	public double getTroopHealthPoints() {
 		
-		for(Warrior warrior : tropa) {
-			hp += warrior.getHP();
-		}
+		double healthPoints = 0;
 		
-		return hp;
+		for(Warrior warrior : this.troop)
+			healthPoints += warrior.getHealthPoints();
+		
+		return healthPoints;
 	}
-	
 }

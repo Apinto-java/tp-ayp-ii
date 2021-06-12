@@ -4,12 +4,12 @@ import weapons.Weapon;
 
 public abstract class Warrior {
 
-	private double hp;
+	private double healthPoints;
 	private Weapon weapon;
 	
-	protected Warrior(int hp, Weapon weapon) {
+	protected Warrior(int healthPoints, Weapon weapon) {
 		
-		this.hp = hp;
+		this.healthPoints = healthPoints;
 		this.weapon = weapon;
 	}
 	
@@ -19,22 +19,22 @@ public abstract class Warrior {
 	
 	public abstract void rest();
 	
-	public double getHP(){
+	public double getHealthPoints(){
 		
-		return this.hp;
+		return this.healthPoints;
 	}
 	
 	public void reduceHP(double damage) {
 		
-		this.hp -= damage;
+		this.healthPoints -= damage;
 		
-		if(this.hp < 0)
-			this.hp = 0;
+		if(this.healthPoints < 0)
+			this.healthPoints = 0;
 	}
 	
-	public void increaseHP(double healing) {
+	public void increaseHealthPoints(double healing) {
 		
-		this.hp += healing;
+		this.healthPoints += healing;
 	}
 	
 	public Weapon getWeapon(){

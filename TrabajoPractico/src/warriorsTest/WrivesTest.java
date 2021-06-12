@@ -17,7 +17,7 @@ public class WrivesTest {
 	@Test
 	public void unWrivesComienzaCon108DeVidaYUnMagic() {
 
-		Assert.assertEquals(108, wrives.getHP(), 0.0);
+		Assert.assertEquals(108, wrives.getHealthPoints(), 0.0);
 
 		Class<? extends Magic> magic = new Magic().getClass();
 		Class<? extends Weapon> esUnArmaDeWrives = wrives.getWeapon().getClass();
@@ -31,7 +31,7 @@ public class WrivesTest {
 		wrives.attack(testBuddy);
 
 		// 500 - 113 = 387
-		Assert.assertEquals(387, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(387, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
@@ -42,22 +42,22 @@ public class WrivesTest {
 		wrives.attack(testBuddy);
 
 		// 1000 - 113 = 887
-		Assert.assertEquals(887, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(887, testBuddy.getHealthPoints(), 0.01);
 
 		wrives.attack(testBuddy);
 
 		// 887 - 226 = 661
-		Assert.assertEquals(661, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(661, testBuddy.getHealthPoints(), 0.01);
 
 		wrives.attack(testBuddy);
 		
 		// 661 - 113 = 548
-		Assert.assertEquals(548, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(548, testBuddy.getHealthPoints(), 0.01);
 
 		wrives.attack(testBuddy);
 		
 		// 548 - 226 = 322
-		Assert.assertEquals(322, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(322, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
@@ -67,13 +67,13 @@ public class WrivesTest {
 
 		wrives.attack(testBuddy);
 		
-		Assert.assertEquals(500, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(500, testBuddy.getHealthPoints(), 0.01);
 
 		wrives.receiveAttack(10);
 
 		wrives.attack(testBuddy);
 		
-		Assert.assertEquals(387, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(387, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
@@ -82,6 +82,6 @@ public class WrivesTest {
 		wrives.receiveAttack(10);
 
 		// 108 - 10*2 = 108 - 20 = 88
-		Assert.assertEquals(88, wrives.getHP(), 0.01);
+		Assert.assertEquals(88, wrives.getHealthPoints(), 0.01);
 	}
 }

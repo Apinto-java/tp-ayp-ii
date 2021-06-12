@@ -20,7 +20,7 @@ public class RadaiteranTest {
 	@Test
 	public void unRadaiteranComienzaCon36DeVidaYUnShuriken() {
 
-		Assert.assertEquals(36, radaiteran.getHP(), 0.0);
+		Assert.assertEquals(36, radaiteran.getHealthPoints(), 0.0);
 
 		Class<? extends Shuriken> shuriken = new Shuriken().getClass();
 		Class<? extends Weapon> esUnArmaDeRadaiteran = radaiteran.getWeapon().getClass();
@@ -34,7 +34,7 @@ public class RadaiteranTest {
 		radaiteran.attack(testBuddy);
 
 		// 500 - 56 = 444
-		Assert.assertEquals(444, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(444, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class RadaiteranTest {
 		// (4) 56 + 3 * 3 = 65
 		
 		// 500 - 56 - 59 - 62 - 68 = 500 - 245 = 255
-		Assert.assertEquals(258, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(258, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class RadaiteranTest {
 		
 		new Wrives().attack(radaiteran);
 
-		Assert.assertEquals(0, radaiteran.getHP(), 0.0);
+		Assert.assertEquals(0, radaiteran.getHealthPoints(), 0.0);
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class RadaiteranTest {
 
 		new Nortaichian().attack(radaiteran);
 		
-		Assert.assertEquals(18, radaiteran.getHP(), 0.0);
+		Assert.assertEquals(18, radaiteran.getHealthPoints(), 0.0);
 	}
 
 	@Test
@@ -73,6 +73,6 @@ public class RadaiteranTest {
 
 		new Reralopes().attack(radaiteran);
 
-		Assert.assertEquals(9, radaiteran.getHP(), 0.0);
+		Assert.assertEquals(9, radaiteran.getHealthPoints(), 0.0);
 	}
 }

@@ -2,17 +2,19 @@ package warriors;
 
 import weapons.Bow;
 
-public class Nortaichian extends Warrior {
+public class Nortaichian extends Warrior implements Curable {
 
-	private double maxHP;
-	private int doubleDamage;
-	private int stoned = 0;
+	private double maxHealthPoints;
+	private int timesDoubleDamage;
+	private int timesPetrified;
 
 	public Nortaichian() {
 
 		super(66, new Bow());
-		this.maxHP = this.getHP();
-		this.doubleDamage = 0;
+		
+		this.maxHealthPoints = this.getHealthPoints();
+		this.timesDoubleDamage = 0;
+		this.timesPetrified = 0;
 	}
 
 	@Override
@@ -20,52 +22,56 @@ public class Nortaichian extends Warrior {
 
 		double damage = super.getWeapon().use();
 
-		if (stoned >= 1) {
+		if (timesPetrified > 0) {
 
-			stoned--;
 			damage = 0;
+			timesPetrified--;
 			
-		} else if (doubleDamage >= 1) {
+		} else if (timesDoubleDamage > 0) {
 
-			doubleDamage--;
 			damage *= 2;
-			
+			timesDoubleDamage--;	
 		}
 
 		anotherWarrior.receiveAttack(damage);
 		
-		if(damage > 0)
-			addHP();
+		if (damage > 0)
+			super.increaseHealthPoints(this.extraHealthPoints());
 	}
 
+	private double extraHealthPoints() {
+		
+		double extra = this.maxHealthPoints * 0.04;
+
+		if ((this.getHealthPoints() + extra) > this.maxHealthPoints)
+			extra = 0;
+		
+		return extra;
+	}
+	
 	@Override
 	public void receiveAttack(double damage) {
 
-		if (this.doubleDamage == 0)
-			this.doubleDamage = 2;
-
-		if (this.stoned >= 1)
+		if (this.timesPetrified > 0)
 			super.reduceHP(damage / 2);
 		else
 			super.reduceHP(damage);
+		
+		if (this.timesDoubleDamage == 0) // En duda.
+			this.timesDoubleDamage = 2;
 	}
-
+	
 	@Override
 	public void rest() {
 
-		if (this.stoned == 0)
-			this.stoned = 2;
-
-		// max HP - lo que tiene = todo el HP que le bajaron
-		double HpTaken = 66 - super.getHP();
-		super.increaseHP(HpTaken);
+		this.cure();
+		this.timesPetrified = 2;
 	}
 	
-	private void addHP() {
+	@Override
+	public void cure() {
 		
-		double additionalHP = this.maxHP * 0.04;
-
-		if (this.getHP() + additionalHP <= this.maxHP)
-			this.increaseHP(additionalHP);
+		double pointsToCompleteHealth = this.maxHealthPoints - super.getHealthPoints();
+		super.increaseHealthPoints(pointsToCompleteHealth);
 	}
 }

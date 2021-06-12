@@ -17,7 +17,7 @@ public class ReralopesTest {
 	@Test
 	public void unReralopesComienzaCon53DeVidaYUnaCatapulta() {
 
-		Assert.assertEquals(53, reralopes.getHP(), 0.01);
+		Assert.assertEquals(53, reralopes.getHealthPoints(), 0.01);
 
 		Class<? extends Catapult> catapult = new Catapult().getClass();
 		Class<? extends Weapon> esUnArmaDeReralopes = reralopes.getWeapon().getClass();
@@ -35,7 +35,7 @@ public class ReralopesTest {
 			reralopes.attack(testBuddy);
 
 		// 500 - 54 = 446
-		Assert.assertEquals(446, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(446, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
@@ -52,14 +52,14 @@ public class ReralopesTest {
 			reralopes.attack(testBuddy);
 
 		// 500 - 189 = 311
-		Assert.assertEquals(311, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(311, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
 	public void unReralopesNoHaceDanioDobleSiEsAtacado() {
 
-		// para probar esto, primero confirmaremos que ataque dos veces con daño doble,
-		// despues sera atacado y no hara daño doble, sino que sus proximos dos ataques
+		// para probar esto, primero confirmaremos que ataque dos veces con daï¿½o doble,
+		// despues sera atacado y no hara daï¿½o doble, sino que sus proximos dos ataques
 		// seran normales
 		
 		reralopes.rest();
@@ -68,16 +68,16 @@ public class ReralopesTest {
 			reralopes.attack(testBuddy);
 		
 		// 500 - (27*2)*2 = 500 - 108 = 392
-		Assert.assertEquals(392, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(392, testBuddy.getHealthPoints(), 0.01);
 		
 		reralopes.receiveAttack(10);
 		
 		for(int i = 0; i < 4; i++)
 			reralopes.attack(testBuddy);
 		
-		// ahora debe atacar con daño normal
+		// ahora debe atacar con daï¿½o normal
 		// 392 - 27*2 = 392 - 54 = 338
-		Assert.assertEquals(338, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(338, testBuddy.getHealthPoints(), 0.01);
 	}
 	
 	@Test
@@ -90,6 +90,6 @@ public class ReralopesTest {
 		for(int i = 0; i < 4; i++)
 			reralopes.attack(testBuddy);
 		
-		Assert.assertEquals(446, testBuddy.getHP(), 0.01);
+		Assert.assertEquals(446, testBuddy.getHealthPoints(), 0.01);
 	}
 }

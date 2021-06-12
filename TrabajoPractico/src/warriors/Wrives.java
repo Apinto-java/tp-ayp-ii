@@ -4,12 +4,15 @@ import weapons.Magic;
 
 public class Wrives extends Warrior {
 
-	private boolean doubleAttack = true;
-	private boolean peaceful = false;
+	private boolean doubleDamage;
+	private boolean isPeaceful;
 
 	public Wrives() {
 
 		super(108, new Magic());
+		
+		this.doubleDamage = true;
+		this.isPeaceful = false;
 	}
 
 	@Override
@@ -17,15 +20,15 @@ public class Wrives extends Warrior {
 
 		double damage;
 
-		if (this.peaceful)
+		if (this.isPeaceful)
 			damage = 0;
 		else {
 			
-			this.doubleAttack = !this.doubleAttack;
+			this.doubleDamage = !this.doubleDamage;
 
 			damage = super.getWeapon().use();
 
-			if (doubleAttack)
+			if (doubleDamage)
 				damage *= 2;
 		}
 		
@@ -37,14 +40,14 @@ public class Wrives extends Warrior {
 
 		super.reduceHP(damage * 2);
 
-		peaceful = false;
+		isPeaceful = false;
 	}
 
 	@Override
 	public void rest() {
 
-		peaceful = true;
+		isPeaceful = true;
 
-		super.increaseHP(50);
+		super.increaseHealthPoints(50);
 	}
 }
