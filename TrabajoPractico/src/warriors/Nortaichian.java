@@ -18,9 +18,9 @@ public class Nortaichian extends Warrior implements Curable {
 	}
 
 	@Override
-	public void attack(Warrior anotherWarrior) {
+	public int attack(Warrior anotherWarrior) {
 
-		double damage = super.getWeapon().use();
+		int damage = super.getWeapon().use();
 
 		if (timesPetrified > 0) {
 
@@ -37,6 +37,8 @@ public class Nortaichian extends Warrior implements Curable {
 		
 		if (damage > 0)
 			super.increaseHealthPoints(this.extraHealthPoints());
+		
+		return damage;
 	}
 
 	private double extraHealthPoints() {
@@ -53,9 +55,9 @@ public class Nortaichian extends Warrior implements Curable {
 	public void receiveAttack(double damage) {
 
 		if (this.timesPetrified > 0)
-			super.reduceHP(damage / 2);
+			super.reduceHealthPoints(damage / 2);
 		else
-			super.reduceHP(damage);
+			super.reduceHealthPoints(damage);
 		
 		if (this.timesDoubleDamage == 0) // En duda.
 			this.timesDoubleDamage = 2;

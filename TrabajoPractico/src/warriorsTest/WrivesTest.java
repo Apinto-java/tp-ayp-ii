@@ -3,7 +3,6 @@ package warriorsTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import warriors.TestBuddy;
 import warriors.Warrior;
 import warriors.Wrives;
 import weapons.Magic;
@@ -62,15 +61,15 @@ public class WrivesTest {
 
 	@Test
 	public void unWrivesNoAtacaCuandoMeditaYSiEsAtacadoLoHaceNormalmente() {
-
+		
 		wrives.rest();
-
+		
 		wrives.attack(testBuddy);
 		
 		Assert.assertEquals(500, testBuddy.getHealthPoints(), 0.01);
-
+		
 		wrives.receiveAttack(10);
-
+		
 		wrives.attack(testBuddy);
 		
 		Assert.assertEquals(387, testBuddy.getHealthPoints(), 0.01);

@@ -6,7 +6,6 @@ import org.junit.Test;
 import warriors.Nortaichian;
 import warriors.Radaiteran;
 import warriors.Reralopes;
-import warriors.TestBuddy;
 import warriors.Warrior;
 import warriors.Wrives;
 import weapons.Shuriken;
@@ -48,7 +47,7 @@ public class RadaiteranTest {
 		// (3) 56 + 3 * 2 = 62
 		// (4) 56 + 3 * 3 = 65
 		
-		// 500 - 56 - 59 - 62 - 68 = 500 - 245 = 255
+		// 500 - 242 = 258
 		Assert.assertEquals(258, testBuddy.getHealthPoints(), 0.01);
 	}
 

@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import warriors.Nortaichian;
-import warriors.TestBuddy;
 import warriors.Warrior;
 import weapons.Bow;
 import weapons.Weapon;

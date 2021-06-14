@@ -7,13 +7,13 @@ public abstract class Warrior {
 	private double healthPoints;
 	private Weapon weapon;
 	
-	protected Warrior(int healthPoints, Weapon weapon) {
+	public Warrior(int healthPoints, Weapon weapon) {
 		
 		this.healthPoints = healthPoints;
 		this.weapon = weapon;
 	}
 	
-	public abstract void attack(Warrior anotherWarrior);
+	public abstract int attack(Warrior anotherWarrior);
 	
 	public abstract void receiveAttack(double damage);
 	
@@ -24,7 +24,7 @@ public abstract class Warrior {
 		return this.healthPoints;
 	}
 	
-	public void reduceHP(double damage) {
+	public void reduceHealthPoints(double damage) {
 		
 		this.healthPoints -= damage;
 		

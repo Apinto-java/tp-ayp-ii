@@ -2,52 +2,58 @@ package warriors;
 
 import weapons.Magic;
 
-public class Wrives extends Warrior {
+public class Wrives extends Warrior implements Meditator {
 
-	private boolean doubleDamage;
+	private boolean hasDoubleDamage;
 	private boolean isPeaceful;
 
 	public Wrives() {
 
 		super(108, new Magic());
 		
-		this.doubleDamage = true;
+		this.hasDoubleDamage = false;
 		this.isPeaceful = false;
 	}
 
 	@Override
-	public void attack(Warrior anotherWarrior) {
+	public int attack(Warrior anotherWarrior) {
 
-		double damage;
+		int damage = 0;
 
-		if (this.isPeaceful)
-			damage = 0;
-		else {
+		if (!this.isPeaceful) {
 			
-			this.doubleDamage = !this.doubleDamage;
-
 			damage = super.getWeapon().use();
-
-			if (doubleDamage)
+		
+			if (this.hasDoubleDamage)
 				damage *= 2;
+			
+			this.hasDoubleDamage = !this.hasDoubleDamage;	
 		}
 		
 		anotherWarrior.receiveAttack(damage);
+		
+		return damage;
 	}
 
 	@Override
 	public void receiveAttack(double damage) {
 
-		super.reduceHP(damage * 2);
-
-		isPeaceful = false;
+		this.isPeaceful = false;
+		
+		super.reduceHealthPoints(damage * 2);
 	}
 
 	@Override
 	public void rest() {
 
-		isPeaceful = true;
+		this.meditate();
 
 		super.increaseHealthPoints(50);
+	}
+
+	@Override
+	public void meditate() {
+		
+		this.isPeaceful = true;
 	}
 }
