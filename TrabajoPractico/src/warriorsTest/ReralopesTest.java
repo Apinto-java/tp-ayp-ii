@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import warriors.Reralopes;
-import warriors.TestBuddy;
 import warriors.Warrior;
 import weapons.Weapon;
 import weapons.Catapult;
@@ -52,7 +51,7 @@ public class ReralopesTest {
 			reralopes.attack(testBuddy);
 
 		// 500 - 189 = 311
-		Assert.assertEquals(311, testBuddy.getHealthPoints(), 0.01);
+		Assert.assertEquals(257, testBuddy.getHealthPoints(), 0.01);
 	}
 
 	@Test
@@ -64,20 +63,18 @@ public class ReralopesTest {
 		
 		reralopes.rest();
 		
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < 2; i++)
 			reralopes.attack(testBuddy);
 		
-		// 500 - (27*2)*2 = 500 - 108 = 392
 		Assert.assertEquals(392, testBuddy.getHealthPoints(), 0.01);
 		
 		reralopes.receiveAttack(10);
 		
-		for(int i = 0; i < 4; i++)
+		for (int i = 0; i < 2; i++)
 			reralopes.attack(testBuddy);
 		
 		// ahora debe atacar con da�o normal
-		// 392 - 27*2 = 392 - 54 = 338
-		Assert.assertEquals(338, testBuddy.getHealthPoints(), 0.01);
+		Assert.assertEquals(365, testBuddy.getHealthPoints(), 0.01);
 	}
 	
 	@Test

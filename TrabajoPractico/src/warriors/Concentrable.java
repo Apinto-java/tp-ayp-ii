@@ -2,5 +2,5 @@ package warriors;
 
 public interface Concentrable {
 
-	public void contratate();
+	public void concentrate();
 }
