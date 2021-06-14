@@ -53,12 +53,12 @@ public class Nortaichian extends Warrior implements Curable {
 	
 	@Override
 	public void receiveAttack(double damage) {
-
-		if (this.timesPetrified > 0)
-			super.reduceHealthPoints(damage / 2);
-		else
-			super.reduceHealthPoints(damage);
 		
+		if (this.timesPetrified > 0)
+			damage /= 2;
+		
+		super.reduceHealthPoints(damage);
+			
 		if (this.timesDoubleDamage == 0) // En duda.
 			this.timesDoubleDamage = 2;
 	}

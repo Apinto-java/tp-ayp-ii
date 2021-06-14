@@ -16,16 +16,12 @@ public class Reralopes extends Warrior implements Concentrable {
 	@Override
 	public int attack(Warrior anotherWarrior) {
 		
-		int damage = 0;
+		int damage = super.getWeapon().use();
 		
-		if (this.amountOfAttacks < 0) {
-			
-			damage = super.getWeapon().use() * 2;
-			
-		} else if (this.amountOfAttacks % 2 == 0) {
-			
-			damage = super.getWeapon().use();
-		}
+		if (this.amountOfAttacks < 0)
+			damage *= 2;
+		else if (this.amountOfAttacks % 2 != 0)
+			damage = 0;
 		
 		amountOfAttacks++;
 		
