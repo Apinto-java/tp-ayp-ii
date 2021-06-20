@@ -6,8 +6,22 @@ import java.util.ArrayList;
 
 public class Grafo {
 
-	private HashMap<String, Vertice> towns = new HashMap<String, Vertice>();
-
+	private HashMap<String, Vertice> towns;
+	private static Grafo grafo = null;
+	
+	private Grafo() {
+		
+		this.towns = new HashMap<String, Vertice>();
+	}
+	
+	public static Grafo getInstance() {
+		
+		if (grafo == null)
+			grafo = new Grafo();
+		
+		return grafo;
+	}
+	
 	public void addPath(String townA, String townB, int duration) {
 		
 		if (!towns.containsKey(townA)) {
@@ -25,32 +39,6 @@ public class Grafo {
 		towns.get(townA).addConnection(newPath);
 		towns.get(townB).addConnection(newPath);
 	}
-
-//	public static void main(String[] args) {
-//
-//		Grafo map = new Grafo();
-//		
-//		map.addPath("A", "B", 10);
-//		map.addPath("C", "D", 15);
-//		map.addPath("A", "C", 12);
-//		map.addPath("A", "D", 3);
-//		map.addPath("A", "E", 3);
-//		map.addPath("E", "D", 1);
-//		map.addPath("B", "C", 19);
-//		map.addPath("B", "D", 9);
-//		map.addPath("A", "D", 3);
-//		map.addPath("B", "E", 2);
-//		
-//		System.out.println(map.toString());
-//
-//		System.out.println("------------");
-//
-//		System.out.println(map.dijkstra("C"));
-//
-//		System.out.println("------------");
-//
-//		System.out.println(map.obtenerCaminoMasCortoDesde("C", "E"));
-//	}
 
 	@Override
 	public String toString() {
@@ -86,7 +74,7 @@ public class Grafo {
 		return arreglo;
 	}
 
-	private HashMap<String, String> dijkstra(String firstTown) {
+	public HashMap<String, String> dijkstra(String firstTown) {
 
 		PriorityQueue<Distance> priorityQ = new PriorityQueue<>();
 		HashMap<String, String> precursors = new HashMap<>();

@@ -29,4 +29,9 @@ public class Army extends MilitaryUnit {
 		for (MilitaryUnit militaryUnit : army)
 			militaryUnit.rest();
 	}
+	
+	public double getArmyHealthPoints() {
+		
+		return 1;
+	}
 }
