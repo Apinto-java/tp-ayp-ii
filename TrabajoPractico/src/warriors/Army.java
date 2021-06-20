@@ -26,6 +26,7 @@ public class Army extends MilitaryUnit {
 	@Override
 	public void rest() {
 		
-		army.peek().rest();
+		for (MilitaryUnit militaryUnit : army)
+			militaryUnit.rest();
 	}
 }
