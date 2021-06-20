@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class Town {
+public class Vertice {
 
 	//	String	-> Name of the Town
 	//	Path	-> Path to the Town
-	private Map<String, Path> connections = new HashMap<String, Path>();
+	private Map<String, Arista> connections = new HashMap<String, Arista>();
 	private String name;
 	
-	public Town(String name) {
+	public Vertice(String name) {
 		this.name = name;
 	}
 	
@@ -20,7 +20,7 @@ public class Town {
 		return name;
 	}
 	
-	public void addConnection(Path newPath) {
+	public void addConnection(Arista newPath) {
 		
 		if(name.equals(newPath.getTownA().getName())) {
 			connections.put(newPath.getTownB().getName(), newPath);
@@ -29,12 +29,12 @@ public class Town {
 		}
 	}
 	
-	public Map<String, Path> getConnectionList() {
+	public Map<String, Arista> getConnectionList() {
 		return Collections.unmodifiableMap(connections);
 	}
 	
-	public HashSet<Path> getNearPathsList(){
-		HashSet<Path> out = new HashSet<>();
+	public HashSet<Arista> getNearPathsList(){
+		HashSet<Arista> out = new HashSet<>();
 		
 		for (String path : connections.keySet()) {
 			out.add(connections.get(path));
@@ -49,7 +49,7 @@ public class Town {
 		
 		out += name + "\n";
 		
-		for (Map.Entry<String, Path> path : connections.entrySet()) {
+		for (Map.Entry<String, Arista> path : connections.entrySet()) {
 			out += "\t" + path.getKey() + " " + path.getValue().getDays() + "\n";
 		}
 		

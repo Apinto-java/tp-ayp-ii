@@ -1,22 +1,22 @@
 package map;
 
-public class Path {
+public class Arista {
 
-	private Town townA;
-	private Town townB;
+	private Vertice townA;
+	private Vertice townB;
 	private int days;
 
-	public Path(Town a, Town b, int days) {
+	public Arista(Vertice a, Vertice b, int days) {
 		this.townA = a;
 		this.townB = b;
 		this.days = days;
 	}
 
-	public Town getTownA() {
+	public Vertice getTownA() {
 		return this.townA;
 	}
 
-	public Town getTownB() {
+	public Vertice getTownB() {
 		return this.townB;
 	}
 

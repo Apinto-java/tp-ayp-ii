@@ -4,53 +4,53 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
 
-public class Map {
+public class Grafo {
 
-	private HashMap<String, Town> towns = new HashMap<String, Town>();
+	private HashMap<String, Vertice> towns = new HashMap<String, Vertice>();
 
 	public void addPath(String townA, String townB, int duration) {
 		
 		if (!towns.containsKey(townA)) {
-			Town newTownA = new Town(townA);
+			Vertice newTownA = new Vertice(townA);
 			towns.put(townA, newTownA);
 		}
 
 		if (!towns.containsKey(townB)) {
-			Town newTownB = new Town(townB);
+			Vertice newTownB = new Vertice(townB);
 			towns.put(townB, newTownB);
 		}
 
-		Path newPath = new Path(towns.get(townA), towns.get(townB), duration);
+		Arista newPath = new Arista(towns.get(townA), towns.get(townB), duration);
 
 		towns.get(townA).addConnection(newPath);
 		towns.get(townB).addConnection(newPath);
 	}
 
-	public static void main(String[] args) {
-
-		Map map = new Map();
-		
-		map.addPath("A", "B", 10);
-		map.addPath("C", "D", 15);
-		map.addPath("A", "C", 12);
-		map.addPath("A", "D", 3);
-		map.addPath("A", "E", 3);
-		map.addPath("E", "D", 1);
-		map.addPath("B", "C", 19);
-		map.addPath("B", "D", 9);
-		map.addPath("A", "D", 3);
-		map.addPath("B", "E", 2);
-		
-		System.out.println(map.toString());
-
-		System.out.println("------------");
-
-		System.out.println(map.dijkstra("C"));
-
-		System.out.println("------------");
-
-		System.out.println(map.obtenerCaminoMasCortoDesde("C", "E"));
-	}
+//	public static void main(String[] args) {
+//
+//		Grafo map = new Grafo();
+//		
+//		map.addPath("A", "B", 10);
+//		map.addPath("C", "D", 15);
+//		map.addPath("A", "C", 12);
+//		map.addPath("A", "D", 3);
+//		map.addPath("A", "E", 3);
+//		map.addPath("E", "D", 1);
+//		map.addPath("B", "C", 19);
+//		map.addPath("B", "D", 9);
+//		map.addPath("A", "D", 3);
+//		map.addPath("B", "E", 2);
+//		
+//		System.out.println(map.toString());
+//
+//		System.out.println("------------");
+//
+//		System.out.println(map.dijkstra("C"));
+//
+//		System.out.println("------------");
+//
+//		System.out.println(map.obtenerCaminoMasCortoDesde("C", "E"));
+//	}
 
 	@Override
 	public String toString() {
@@ -58,7 +58,7 @@ public class Map {
 		String out = towns.keySet().toString();
 		out += "\n";
 
-		for (HashMap.Entry<String, Town> town : towns.entrySet()) {
+		for (HashMap.Entry<String, Vertice> town : towns.entrySet()) {
 			out += town.getValue().toString();
 		}
 
@@ -111,10 +111,10 @@ public class Map {
 			if (!visited.get(aTown)) {
 				visited.put(aTown, true);
 
-				for (HashMap.Entry<String, Path> path : towns.get(aTown).getConnectionList().entrySet()) {
+				for (HashMap.Entry<String, Arista> path : towns.get(aTown).getConnectionList().entrySet()) {
 
 					String nextTown = path.getKey();
-					Path nextPath = path.getValue();
+					Arista nextPath = path.getValue();
 
 					if (!visited.get(nextTown)) {
 
