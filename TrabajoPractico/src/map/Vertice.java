@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import warriors.Army;
+import warriors.MilitaryUnit;
+import warriors.Troop;
+import warriors.Warrior;
+
 public class Vertice {
 
 	//	String	-> Name of the Town
@@ -55,8 +60,19 @@ public class Vertice {
 		
 		return out;
 	}
-	
-//	public Collection<Army> getArmyOfTown(){
-//		return this.army;
-//	}
+
+	public boolean isAlly() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Troop giveTroop() {
+		// es para llenar las lineas aliadas
+		return null;
+	}
+
+	public MilitaryUnit getArmy() {
+		// enemigos a atacar
+		return null;
+	}
 }

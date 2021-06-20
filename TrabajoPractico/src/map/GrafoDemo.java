@@ -21,7 +21,7 @@ public class GrafoDemo {
 
 		System.out.println("------------");
 
-		System.out.println(map.dijkstra("C"));
+		System.out.println(map.dijkstra("A"));
 
 		System.out.println("------------");
 

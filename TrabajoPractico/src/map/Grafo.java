@@ -53,13 +53,13 @@ public class Grafo {
 		return out;
 	}
 
-	public String obtenerCaminoMasCortoDesde(String townA, String townB) {
+	public ArrayList<String> obtenerCaminoMasCortoDesde(String townA, String townB) {
 
 		HashMap<String, String> mapa = this.dijkstra(townA);
 
 		ArrayList<String> out = obtenerCaminoMasCortoDesde(mapa, townA, townB);
 		
-		return out.toString();
+		return out;
 	}
 
 	private ArrayList<String> obtenerCaminoMasCortoDesde(HashMap<String, String> mapa, String townA, String townB) {
@@ -119,5 +119,9 @@ public class Grafo {
 		}
 
 		return precursors;
+	}
+
+	public Vertice getTown(String townName) {
+		return towns.get(townName);
 	}
 }

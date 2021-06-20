@@ -6,7 +6,6 @@ public class Battle {
 
 	public static void between(MilitaryUnit thisArmy, MilitaryUnit anotherArmy) {
 		
-		
 	}
 	
 }

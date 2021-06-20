@@ -7,4 +7,6 @@ public abstract class MilitaryUnit {
 	public abstract void receiveAttack(double damage);
 	
 	public abstract void rest();
+
+	public abstract Warrior getFirstSoldier();
 }

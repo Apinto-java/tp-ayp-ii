@@ -51,4 +51,9 @@ public class Troop extends MilitaryUnit {
 		
 		return healthPoints;
 	}
+
+	@Override
+	public Warrior getFirstSoldier() {
+		return troop.peek();
+	}
 }
