@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import map.Grafo;
@@ -10,17 +11,17 @@ import warriors.MilitaryUnit;
 
 @SuppressWarnings("unused")
 public class Game {
-
+	
 	private static Scanner scan;
 
 	public static void main(String[] args) {
-
+		
 		scan = new Scanner(System.in);
-
-		System.out.println("Select Option: \n" + "1. Is factible this mission? \n" + "2. Load map \n");
-
-		int option = scan.nextInt();
-
+		
+		System.out.println("Select Option: \n" + "1. Is this mission factible? \n" + "2. Load map \n");
+		
+		int option = askForMenuOption();
+		
 		switch (option) {
 		case 1:
 
@@ -29,7 +30,7 @@ public class Game {
 
 		case 2:
 
-			System.out.println("Loaded.");
+			System.out.println("Loaded. ");
 			break;
 
 		default:
@@ -38,7 +39,22 @@ public class Game {
 			break;
 		}
 	}
-
+	
+	private static int askForMenuOption() {
+		
+		String input = scan.next();
+		int option = 0;
+		
+		try {
+			option = Integer.parseInt(input);
+		} catch(NumberFormatException e) {
+			System.out.println("Por favor ingrese un numero");
+			option = askForMenuOption();
+		}
+		
+		return option;
+	}
+	
 	private void startMission() {
 
 		String[] itinerario = obtenerInicioFin();
