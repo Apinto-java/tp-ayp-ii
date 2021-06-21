@@ -2,7 +2,7 @@ package warriors;
 
 import weapons.Weapon;
 
-public abstract class Warrior {
+public abstract class Warrior implements Comparable<Warrior>{
 
 	private double healthPoints;
 	private Weapon weapon;
@@ -19,7 +19,7 @@ public abstract class Warrior {
 	
 	public abstract void rest();
 	
-	public double getHealthPoints(){
+	public Double getHealthPoints(){
 		
 		return this.healthPoints;
 	}
@@ -40,5 +40,9 @@ public abstract class Warrior {
 	public Weapon getWeapon(){
 		
 		return this.weapon;
+	}
+	
+	public int compareTo(Warrior o) {
+		return this.getHealthPoints().compareTo(o.getHealthPoints());
 	}
 }

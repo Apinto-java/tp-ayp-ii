@@ -84,8 +84,9 @@ public class Game {
 	}
 
 	// INCOMPLETO
-	private void avanzarPor(ArrayList<String> recorrido, Army ownArmy) {
+	private boolean avanzarPor(ArrayList<String> recorrido, Army ownArmy) {
 		
+		boolean out = false;
 		Grafo map = Grafo.getInstance();
 		
 		Vertice thisTown = map.getTown(recorrido.get(0));
@@ -95,12 +96,20 @@ public class Game {
 			
 			ownArmy.rest();
 		} else{
-			ownArmy.attack(thisTown.getArmy().getFirstSoldier());
+			Battle.between(ownArmy, thisTown.getArmy());
 		}
 		
 		if(ownArmy.isStillAlive() && !recorrido.isEmpty()) {
 			recorrido.remove(0);
 			avanzarPor(recorrido, ownArmy);
+		} else if (!ownArmy.isStillAlive()){
+			System.err.println("Failed mission.");
+			out = false;
+		} else {
+			System.out.println("Mision complete"); // debe agregar cuantos dias duro y cuantos quedaron.
+			out = true;
 		}
+		
+		return out;
 	}
 }
