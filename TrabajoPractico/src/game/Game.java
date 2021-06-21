@@ -40,6 +40,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return The menu option selected by the use. If it is invalid it will ask the user
+	 * again for input
+	 */
 	private static int askForMenuOption() {
 		
 		String input = scan.next();
