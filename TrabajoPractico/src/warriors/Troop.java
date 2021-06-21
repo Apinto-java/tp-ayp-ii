@@ -6,11 +6,20 @@ public class Troop extends MilitaryUnit {
 	
 	private PriorityQueue<Warrior> troop;
 	
+	/**
+	 * 
+	 * @param warrior The Warrior to add to this Troop
+	 * @post Adds 'warrior' to this Troop
+	 */
 	public void addWarrior(Warrior warrior) {
 		
 		this.troop.add(warrior);
 	}
 	
+	/**
+	 * @param anotherWarrior The Warrior that will receive the attack
+	 * @post The first Warrior of this troop attacks 'anotherWarrior'
+	 */
 	@Override
 	public void attack(Warrior anotherWarrior) {
 		
@@ -18,7 +27,10 @@ public class Troop extends MilitaryUnit {
 		
 		firstWarrior.attack(anotherWarrior);
 	}
-
+	
+	/**
+	 * @param damage Damage receive by the first Warrior of this Troop
+	 */
 	@Override
 	public void receiveAttack(double damage) {
 		
@@ -29,7 +41,11 @@ public class Troop extends MilitaryUnit {
 		if(firstWarrior.getHealthPoints() == 0)
 			this.troop.poll();
 	}
-
+	
+	
+	/**
+	 * @post Every Warrior of this troop rests
+	 */
 	// Ojo que es una cola de prioridad, no sé si es iterable como tal.
 	@Override
 	public void rest() {
@@ -51,7 +67,10 @@ public class Troop extends MilitaryUnit {
 		
 		return healthPoints;
 	}
-
+	
+	/**
+	 * @return The first Warrior ready for battle
+	 */
 	@Override
 	public Warrior getFirstSoldier() {
 		return troop.peek();
