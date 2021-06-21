@@ -42,7 +42,7 @@ public class Troop extends MilitaryUnit {
 	 * 
 	 * @return total HP of this troop
 	 */
-	public double getTroopHealthPoints() {
+	public double getHealthPoints() {
 		
 		double healthPoints = 0;
 		

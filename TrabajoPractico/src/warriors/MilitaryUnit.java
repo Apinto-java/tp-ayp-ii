@@ -9,4 +9,6 @@ public abstract class MilitaryUnit {
 	public abstract void rest();
 
 	public abstract Warrior getFirstSoldier();
+	
+	public abstract double getHealthPoints();
 }
