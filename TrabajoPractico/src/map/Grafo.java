@@ -8,37 +8,55 @@ public class Grafo {
 
 	private HashMap<String, Vertice> towns;
 	private static Grafo grafo = null;
-	
+
 	private Grafo() {
-		
+
 		this.towns = new HashMap<String, Vertice>();
 	}
-	
+
 	public static Grafo getInstance() {
-		
+
 		if (grafo == null)
 			grafo = new Grafo();
-		
+
 		return grafo;
 	}
-	
-	public void addPath(String townA, String townB, int duration) {
-		
-		if (!towns.containsKey(townA)) {
-			Vertice newTownA = new Vertice(townA);
-			towns.put(townA, newTownA);
+
+	public void addPath(Vertice townA, Vertice townB, int duration) {
+
+		if (!towns.containsKey(townA.getName())) {
+			String newTownA = townA.getName();
+			towns.put(newTownA, townA);
 		}
 
-		if (!towns.containsKey(townB)) {
-			Vertice newTownB = new Vertice(townB);
-			towns.put(townB, newTownB);
+		if (!towns.containsKey(townB.getName())) {
+			String newTownB = townB.getName();
+			towns.put(newTownB, townB);
 		}
 
-		Arista newPath = new Arista(towns.get(townA), towns.get(townB), duration);
+		Arista newPath = new Arista(townA, townB, duration);
 
-		towns.get(townA).addConnection(newPath);
-		towns.get(townB).addConnection(newPath);
+		townA.addConnection(newPath);
+		townB.addConnection(newPath);
 	}
+
+//	public void addPath(String townA, String townB, int duration) {
+//		
+//		if (!towns.containsKey(townA)) {
+//			Vertice newTownA = new Vertice(townA);
+//			towns.put(townA, newTownA);
+//		}
+//
+//		if (!towns.containsKey(townB)) {
+//			Vertice newTownB = new Vertice(townB);
+//			towns.put(townB, newTownB);
+//		}
+//
+//		Arista newPath = new Arista(towns.get(townA), towns.get(townB), duration);
+//
+//		towns.get(townA).addConnection(newPath);
+//		towns.get(townB).addConnection(newPath);
+//	}
 
 	@Override
 	public String toString() {
@@ -58,7 +76,7 @@ public class Grafo {
 		HashMap<String, String> mapa = this.dijkstra(townA);
 
 		ArrayList<String> out = obtenerCaminoMasCortoDesde(mapa, townA, townB);
-		
+
 		return out;
 	}
 
@@ -66,7 +84,7 @@ public class Grafo {
 
 		ArrayList<String> arreglo = new ArrayList<>();
 
-		if (townB != townA)	
+		if (townB != townA)
 			arreglo = this.obtenerCaminoMasCortoDesde(mapa, townA, mapa.get(townB));
 
 		arreglo.add(townB);

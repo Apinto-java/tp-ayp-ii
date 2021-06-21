@@ -25,17 +25,6 @@ public class Army extends MilitaryUnit {
 		this.army.peek().attack(anotherWarrior);
 	}
 	
-	
-	/**
-	 * @post Every Military Unit receives an attack
-	 */
-	@Override
-	public void receiveAttack(double damage) {
-
-		army.peek().receiveAttack(damage);
-	}
-	
-	
 	/**
 	 * @post Every Military unit rests
 	 */
@@ -51,7 +40,8 @@ public class Army extends MilitaryUnit {
 	 * @return Whether this army has any warrior still alive
 	 */
 	public boolean isStillAlive() {
-		return getHealthPoints() <= 0;
+
+		return this.army.peek() != null;
 	}
 	
 	/**
@@ -59,6 +49,7 @@ public class Army extends MilitaryUnit {
 	 */
 	@Override
 	public Warrior getFirstSoldier() {
+
 		return army.peek().getFirstSoldier();
 	}
 	

@@ -2,10 +2,28 @@ package warriors;
 
 import java.util.PriorityQueue;
 
+import map.Alignment;
+
 public class Troop extends MilitaryUnit {
 	
 	private PriorityQueue<Warrior> troop;
+
+	/**
+	* Instantiates a new Empty Troop
+	*/
+	public Troop(Alignment alignment){
+		this.troop = new PriorityQueue<Warrior>();
+		super.alignment = alignment;
+	}
 	
+	/**
+	* Instantiates a new Troop with the given warriors
+	*/
+	public Troop(PriorityQueue<Warrior> warriors, Alignment alignment){
+		this.troop = warriors;
+		super.alignment = alignment;
+	}
+
 	/**
 	 * 
 	 * @param warrior The Warrior to add to this Troop
@@ -29,21 +47,6 @@ public class Troop extends MilitaryUnit {
 	}
 	
 	/**
-	 * @param damage Damage receive by the first Warrior of this Troop
-	 */
-	@Override
-	public void receiveAttack(double damage) {
-		
-		Warrior firstWarrior = this.troop.peek();
-		
-		firstWarrior.receiveAttack(damage);
-		
-		if(firstWarrior.getHealthPoints() == 0)
-			this.troop.poll();
-	}
-	
-	
-	/**
 	 * @post Every Warrior of this troop rests
 	 */
 	// Ojo que es una cola de prioridad, no sé si es iterable como tal.
@@ -54,6 +57,12 @@ public class Troop extends MilitaryUnit {
 			warrior.rest();
 	}
 	
+	@Override
+	public boolean isStillAlive() {
+
+		return this.troop.peek() != null;
+	}
+
 	/**
 	 * 
 	 * @return total HP of this troop
@@ -74,5 +83,15 @@ public class Troop extends MilitaryUnit {
 	@Override
 	public Warrior getFirstSoldier() {
 		return troop.peek();
+	}
+	
+
+	public Warrior deleteFirstSoldier() {
+
+		return troop.poll();
+	}
+
+	public int getSize() {
+		return troop.size();
 	}
 }

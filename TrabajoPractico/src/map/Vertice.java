@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import warriors.Army;
 import warriors.MilitaryUnit;
 import warriors.Troop;
-import warriors.Warrior;
 
 public class Vertice {
 
@@ -16,9 +14,11 @@ public class Vertice {
 	//	Path	-> Path to the Town
 	private Map<String, Arista> connections = new HashMap<String, Arista>();
 	private String name;
+	private Troop troop;
 	
-	public Vertice(String name) {
+	public Vertice(String name, Troop troop) {
 		this.name = name;
+		this.troop = troop;
 	}
 	
 	public String getName() {
@@ -55,24 +55,30 @@ public class Vertice {
 		out += name + "\n";
 		
 		for (Map.Entry<String, Arista> path : connections.entrySet()) {
-			out += "\t" + path.getKey() + " " + path.getValue().getDays() + "\n";
+			out += "\t" + path.getKey() + " " + path.getValue().getDays() + " " + this.troop.getAlignment().toString() + "\n"
+					+ "\t\t" + this.troop.getSize() + " " + this.troop.getFirstSoldier().getClass().getSimpleName();
 		}
 		
 		return out;
 	}
 
 	public boolean isAlly() {
-		// TODO Auto-generated method stub
-		return false;
+		return (troop.getAlignment().equals(Alignment.Aliado));
 	}
 
 	public Troop giveTroop() {
-		// es para llenar las lineas aliadas
-		return null;
+		
+		int size = this.troop.getSize() / 2;
+		
+		for (int i = 0; i < size; i++) {
+
+			this.troop.deleteFirstSoldier();
+		}
+			
+		return this.troop;
 	}
 
 	public MilitaryUnit getArmy() {
-		// enemigos a atacar
-		return null;
+		return troop;
 	}
 }

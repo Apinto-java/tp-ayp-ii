@@ -1,5 +1,8 @@
 package game;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -29,7 +32,7 @@ public class Game {
 			break;
 
 		case 2:
-
+			loadMapFromPath();
 			System.out.println("Loaded. ");
 			break;
 
@@ -59,11 +62,44 @@ public class Game {
 		
 		return option;
 	}
+
+	private static void loadMapFromPath() {
+
+		try {
+			System.out.println("## Loading MAP \nPlease specify the path to the Map (i.e: C:\\Game\\Map.txt): ");
+			String fileInputPath = scan.nextLine();
+			if (!fileInputPath.isEmpty()) {
+				/**
+				* loadFile(fileInputPath);
+				*/
+			}
+
+		}  catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+
+	private void loadFile(String pFile) throws Exception {
+		BufferedReader lector = new BufferedReader(new FileReader(pFile));
+
+		try {
+			String line = lector.readLine();
+			while (line != null) { 
+				/*
+				*IMP
+				*/
+			}
+		// Agregar excp IO
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			lector.close();
+		}
+	}
 	
 	private void startMission() {
 
 		String[] itinerario = obtenerInicioFin();
-		boolean allDead = false;
 		Army ownArmy = getOwnArmy();
 
 		Grafo map = Grafo.getInstance();
