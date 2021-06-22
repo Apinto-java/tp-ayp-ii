@@ -21,7 +21,21 @@ public class Grafo {
 
 		return grafo;
 	}
-
+	
+	/**
+	 * 
+	 * @param town The Town to add to this map. If it already exists, nothing happens
+	 * @post Adds 'town' to this Map
+	 */
+	public void addVertex(Vertice town) {
+		
+		if(!towns.containsKey(town.getName())) {
+			String name = town.getName();
+			towns.put(name, town);
+		}
+		
+	}
+	
 	public void addPath(Vertice townA, Vertice townB, int duration) {
 
 		if (!towns.containsKey(townA.getName())) {
