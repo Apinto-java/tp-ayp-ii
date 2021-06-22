@@ -7,7 +7,7 @@ import map.Alignment;
 public class Troop extends MilitaryUnit {
 
 	private PriorityQueue<Warrior> queue;
-
+	
 	/**
 	 * Instantiates a new Troop with the given warriors.
 	 */
@@ -25,6 +25,14 @@ public class Troop extends MilitaryUnit {
 		this(new PriorityQueue<Warrior>(), alignment);
 	}
 
+	public Troop(Warrior warrior, int amount, Alignment alignment) {
+		
+		this(alignment);
+		
+		for (int i = 0; i < amount; i++)
+			queue.add(warrior);
+	}
+	
 	/**
 	 * 
 	 * @param warrior The Warrior to add to this Troop
@@ -53,7 +61,6 @@ public class Troop extends MilitaryUnit {
 	/**
 	 * @post Every Warrior of this troop rests
 	 */
-	// Ojo que es una cola de prioridad, no sé si es iterable como tal.
 	@Override
 	public void rest() {
 

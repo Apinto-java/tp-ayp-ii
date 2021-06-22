@@ -8,6 +8,7 @@ import org.junit.Test;
 import game.Battle;
 import map.Alignment;
 import warriors.Army;
+import warriors.MilitaryUnit;
 import warriors.Troop;
 import warriors.Wrives;
 
@@ -17,48 +18,34 @@ public class BattleTest {
 	public void ownWrivesWinsAgainsEnemyWrives() {
 		
 		// Instantiation of the Troops
-		Troop ownTroop = new Troop(Alignment.Propio);
-		ownTroop.addWarrior(new Wrives());
+		Troop ownTroop = new Troop(new Wrives(), 1, Alignment.PROPIO);
+		Troop enemyTroop = new Troop(new Wrives(), 1, Alignment.ENEMIGO);
 		
 		//Instantiation of the Armies
-		Army ownArmy = new Army();
-		ownArmy.addMilitaryUnit(ownTroop);
-		
-		Troop enemyTroop = new Troop(Alignment.Enemigo);
-		enemyTroop.addWarrior(new Wrives());
-		
-		Army enemyArmy = new Army();
-		enemyArmy.addMilitaryUnit(enemyTroop);
+		Army ownArmy = new Army(ownTroop);
+		Army enemyArmy = new Army(enemyTroop);
 		
 		//Battle
-		Assert.assertTrue(Battle.between(ownArmy, enemyArmy));
+		MilitaryUnit isWinner = Battle.between(ownArmy, enemyArmy);
+		
+		Assert.assertEquals(ownArmy, isWinner);
 	}
 	
 	@Test
 	public void ownWrivesAgainsTwoEnemyWrivesLoses() {
 		
-		//Instantiation of the Warriors
-		Wrives ownWrives = new Wrives();
-		Wrives enemyWrives1 = new Wrives();
-		Wrives enemyWrives2 = new Wrives();
-		
-		//Instantiation of the Troops
-		Troop ownTroop = new Troop(Alignment.Propio);
-		ownTroop.addWarrior(ownWrives);
-		
-		Troop enemyTroop = new Troop(Alignment.Enemigo);
-		enemyTroop.addWarrior(enemyWrives1);
-		enemyTroop.addWarrior(enemyWrives2);
+		// Instantiation of the Troops
+		Troop ownTroop = new Troop(new Wrives(), 1, Alignment.PROPIO);
+		Troop enemyTroop = new Troop(new Wrives(), 2, Alignment.ENEMIGO);
 		
 		//Instantiation of the Armies
-		Army ownArmy = new Army();
-		ownArmy.addMilitaryUnit(ownTroop);
-		
-		Army enemyArmy = new Army();
-		enemyArmy.addMilitaryUnit(enemyTroop);
+		Army ownArmy = new Army(ownTroop);
+		Army enemyArmy = new Army(enemyTroop);
 		
 		//Battle
-		Assert.assertFalse(Battle.between(ownArmy, enemyArmy));
+		MilitaryUnit isWinner = Battle.between(ownArmy, enemyArmy);
+		
+		Assert.assertEquals(enemyArmy, isWinner);
 	}
 
 }

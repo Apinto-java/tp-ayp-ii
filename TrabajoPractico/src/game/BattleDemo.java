@@ -13,12 +13,12 @@ public class BattleDemo {
 	public static void main(String[] args) {
 		
 		Army ownArmy = new Army();
-		Troop ownTroop = new Troop(Alignment.Propio);
-		Troop allyTroop = new Troop(Alignment.Aliado);
-		Troop enemyTroop = new Troop(Alignment.Enemigo);
+		Troop ownTroop = new Troop(Alignment.PROPIO);
+		Troop allyTroop = new Troop(Alignment.ALIADO);
+		Troop enemyTroop = new Troop(Alignment.ENEMIGO);
 		Army enemyArmy = new Army();
-		Troop firstEnemyTroop = new Troop(Alignment.Enemigo);
-		Troop secondEnemyTroop = new Troop(Alignment.Enemigo);
+		Troop firstEnemyTroop = new Troop(Alignment.ENEMIGO);
+		Troop secondEnemyTroop = new Troop(Alignment.ENEMIGO);
 		
 		for(int i = 0; i < 75; i++) {
 			ownTroop.addWarrior(new Wrives());

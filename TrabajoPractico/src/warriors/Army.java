@@ -6,7 +6,6 @@ public class Army extends MilitaryUnit {
 
 	private PriorityQueue<MilitaryUnit> queue;
 	
-	
 	public Army(MilitaryUnit unit) {
 		
 		this.queue = new PriorityQueue<MilitaryUnit>();

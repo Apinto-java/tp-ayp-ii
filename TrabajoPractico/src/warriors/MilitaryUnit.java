@@ -22,11 +22,11 @@ public abstract class MilitaryUnit implements Comparable<MilitaryUnit>{
 
 	public int compareTo(MilitaryUnit o) {
 		
-		if(this.getAlignment().equals(Alignment.Propio) && (o.getAlignment().equals(Alignment.Aliado) || o.getAlignment().equals(Alignment.Enemigo)))
+		if(this.getAlignment().equals(Alignment.PROPIO) && (o.getAlignment().equals(Alignment.ALIADO) || o.getAlignment().equals(Alignment.ENEMIGO)))
 			return 1;
-		else if(this.getAlignment().equals(Alignment.Aliado) && o.getAlignment().equals(Alignment.Enemigo))
+		else if(this.getAlignment().equals(Alignment.ALIADO) && o.getAlignment().equals(Alignment.ENEMIGO))
 			return 1;
-		else if(this.getAlignment().equals(Alignment.Aliado) && o.getAlignment().equals(Alignment.Propio))
+		else if(this.getAlignment().equals(Alignment.ALIADO) && o.getAlignment().equals(Alignment.PROPIO))
 			return -1;
 		
 		// the only alternate option is that both alignments are equals to each other.

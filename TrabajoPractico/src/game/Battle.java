@@ -4,21 +4,26 @@ import warriors.MilitaryUnit;
 
 public class Battle {
 
-	public static boolean between(MilitaryUnit thisArmy, MilitaryUnit anotherArmy) {
+	public static MilitaryUnit between(MilitaryUnit unitA, MilitaryUnit unitB) {
 		
-		while(thisArmy.isStillAlive() && anotherArmy.isStillAlive()) {
+		while (unitA.isStillAlive() && unitB.isStillAlive()) {
 			
-			thisArmy.attack(anotherArmy.getFirstWarrior());
+			unitA.attack(unitB.getFirstWarrior());
 			
 			// The enemy army may not be alive after the attack
-			if(anotherArmy.isStillAlive())
+			if (unitB.isStillAlive()) {
+				
 				System.out.println("Enemy alive");
-				anotherArmy.attack(thisArmy.getFirstWarrior());
-			
+				unitB.attack(unitA.getFirstWarrior());
+			}
 		}
 		
-		return thisArmy.isStillAlive();
+		MilitaryUnit winner = unitA;
 		
+		if (unitB.isStillAlive())
+			winner = unitB;
+		
+		return winner;	
 	}
 	
 /*
