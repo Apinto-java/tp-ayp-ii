@@ -52,9 +52,9 @@ public class Army extends MilitaryUnit {
 	 * @return First Warrior that is going to battle in this Army
 	 */
 	@Override
-	public Warrior getFirstSoldier() {
+	public Warrior getFirstWarrior() {
 
-		return army.peek().getFirstSoldier();
+		return army.peek().getFirstWarrior();
 	}
 	
 	/**

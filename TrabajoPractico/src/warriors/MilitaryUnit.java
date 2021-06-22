@@ -14,7 +14,7 @@ public abstract class MilitaryUnit implements Comparable<MilitaryUnit>{
 	
 	public abstract void rest();
 
-	public abstract Warrior getFirstSoldier();
+	public abstract Warrior getFirstWarrior();
 	
 	public abstract double getHealthPoints();
 	

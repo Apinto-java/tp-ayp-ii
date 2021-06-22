@@ -42,10 +42,10 @@ public class Troop extends MilitaryUnit {
 	@Override
 	public void attack(Warrior anotherWarrior) {
 
-		Warrior firstWarrior = this.queue.peek();
+		Warrior firstWarrior = this.getFirstWarrior();
 		
 		if (firstWarrior.getHealthPoints() <= 0)
-			this.queue.poll();
+			this.deleteFirstSoldier();
 		else
 			firstWarrior.attack(anotherWarrior);
 	}
@@ -66,7 +66,6 @@ public class Troop extends MilitaryUnit {
 
 		//return this.troop.peek() != null;
 		return this.getHealthPoints() > 0.0;
-
 	}
 
 	/**
@@ -87,7 +86,7 @@ public class Troop extends MilitaryUnit {
 	 * @return The first Warrior ready for battle
 	 */
 	@Override
-	public Warrior getFirstSoldier() {
+	public Warrior getFirstWarrior() {
 		
 		return this.queue.peek();
 	}
@@ -107,7 +106,7 @@ public class Troop extends MilitaryUnit {
 		
 		String message = "";
 
-		message += this.getSize() + " " + getFirstSoldier().getClass().getSimpleName() + " " + getAlignment().toString();
+		message += this.getSize() + " " + getFirstWarrior().getClass().getSimpleName() + " " + getAlignment().toString();
 
 		return message;
 	}

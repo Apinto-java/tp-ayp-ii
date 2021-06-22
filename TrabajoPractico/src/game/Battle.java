@@ -9,12 +9,12 @@ public class Battle {
 		
 		while(thisArmy.isStillAlive() && anotherArmy.isStillAlive()) {
 			
-			thisArmy.attack(anotherArmy.getFirstSoldier());
+			thisArmy.attack(anotherArmy.getFirstWarrior());
 			
 			// The enemy army may not be alive after the attack
 			if(anotherArmy.isStillAlive())
 				System.out.println("Enemy alive");
-				anotherArmy.attack(thisArmy.getFirstSoldier());
+				anotherArmy.attack(thisArmy.getFirstWarrior());
 			
 		}
 		
