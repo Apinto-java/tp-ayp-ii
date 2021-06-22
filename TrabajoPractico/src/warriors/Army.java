@@ -4,16 +4,28 @@ import java.util.PriorityQueue;
 
 public class Army extends MilitaryUnit {
 
-	private PriorityQueue<MilitaryUnit> army = new PriorityQueue<MilitaryUnit>();
+	private PriorityQueue<MilitaryUnit> queue;
+	
+	
+	public Army(MilitaryUnit unit) {
+		
+		this.queue = new PriorityQueue<MilitaryUnit>();
+		this.queue.add(unit);
+	}
+	
+	public Army() {
+		
+		this(null);
+	}
 	
 	/**
 	 * 
-	 * @param other MilitaryUnit to add
+	 * @param unit MilitaryUnit to add
 	 * @post Adds 'other' to this army
 	 */
-	public void addMilitaryUnit(MilitaryUnit other) {
+	public void addMilitaryUnit(MilitaryUnit unit) {
 
-		this.army.add(other);
+		this.queue.add(unit);
 	}
 
 	/**
@@ -22,19 +34,21 @@ public class Army extends MilitaryUnit {
 	@Override
 	public void attack(Warrior anotherWarrior) {
 
-		if(army.peek().getHealthPoints() <= 0.0)
-			army.poll();
+		MilitaryUnit firstUnit = this.queue.peek();
+		
+		if(firstUnit.getHealthPoints() <= 0.0)
+			this.deleteFirstUnit();
 		else
-			this.army.peek().attack(anotherWarrior);
+			firstUnit.attack(anotherWarrior);
 	}
-	
+
 	/**
 	 * @post Every Military unit rests
 	 */
 	@Override
 	public void rest() {
 
-		for (MilitaryUnit militaryUnit : army)
+		for (MilitaryUnit militaryUnit : queue)
 			militaryUnit.rest();
 	}
 	
@@ -54,7 +68,12 @@ public class Army extends MilitaryUnit {
 	@Override
 	public Warrior getFirstWarrior() {
 
-		return army.peek().getFirstWarrior();
+		return queue.peek().getFirstWarrior();
+	}
+	
+	private void deleteFirstUnit() {
+		
+		this.queue.poll();
 	}
 	
 	/**
@@ -65,7 +84,7 @@ public class Army extends MilitaryUnit {
 		
 		double healthPoints = 0.0;
 		
-		for(MilitaryUnit unit : this.army)
+		for(MilitaryUnit unit : this.queue)
 			healthPoints += unit.getHealthPoints();
 		
 		return healthPoints;
@@ -73,12 +92,12 @@ public class Army extends MilitaryUnit {
 
 	@Override
 	public String toString() {
-		String out = "";
 		
-		for (MilitaryUnit militaryUnit : army) {
-			out += militaryUnit.toString() + "\n";
-		}
+		String message = "";
 		
-		return out;
+		for (MilitaryUnit militaryUnit : queue)
+			message += militaryUnit.toString() + "\n";
+		
+		return message;
 	}
 }

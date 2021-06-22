@@ -9,20 +9,20 @@ public class Troop extends MilitaryUnit {
 	private PriorityQueue<Warrior> queue;
 
 	/**
-	 * Instantiates a new Empty Troop
-	 */
-	public Troop(Alignment alignment) {
-		
-		this(new PriorityQueue<Warrior>(), alignment);
-	}
-	
-	/**
 	 * Instantiates a new Troop with the given warriors.
 	 */
 	public Troop(PriorityQueue<Warrior> warriors, Alignment alignment) {
 		
 		this.queue = warriors;
 		super.alignment = alignment;
+	}
+	
+	/**
+	 * Instantiates a new Empty Troop
+	 */
+	public Troop(Alignment alignment) {
+		
+		this(new PriorityQueue<Warrior>(), alignment);
 	}
 
 	/**

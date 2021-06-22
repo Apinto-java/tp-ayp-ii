@@ -4,7 +4,6 @@ import warriors.MilitaryUnit;
 
 public class Battle {
 
-	
 	public static boolean between(MilitaryUnit thisArmy, MilitaryUnit anotherArmy) {
 		
 		while(thisArmy.isStillAlive() && anotherArmy.isStillAlive()) {

@@ -16,20 +16,16 @@ public class BattleTest {
 	@Test
 	public void ownWrivesWinsAgainsEnemyWrives() {
 		
-		// Instantiation of the warriors
-		Wrives own = new Wrives();
-		Wrives enemy = new Wrives();
-		
 		// Instantiation of the Troops
 		Troop ownTroop = new Troop(Alignment.Propio);
-		ownTroop.addWarrior(own);
-		
-		Troop enemyTroop = new Troop(Alignment.Enemigo);
-		enemyTroop.addWarrior(enemy);
+		ownTroop.addWarrior(new Wrives());
 		
 		//Instantiation of the Armies
 		Army ownArmy = new Army();
 		ownArmy.addMilitaryUnit(ownTroop);
+		
+		Troop enemyTroop = new Troop(Alignment.Enemigo);
+		enemyTroop.addWarrior(new Wrives());
 		
 		Army enemyArmy = new Army();
 		enemyArmy.addMilitaryUnit(enemyTroop);
