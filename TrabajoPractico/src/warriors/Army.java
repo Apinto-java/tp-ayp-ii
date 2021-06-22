@@ -45,7 +45,7 @@ public class Army extends MilitaryUnit {
 	public boolean isStillAlive() {
 
 		//return this.army.peek() != null;
-		return getHealthPoints() > 0;
+		return this.getHealthPoints() > 0;
 	}
 	
 	/**

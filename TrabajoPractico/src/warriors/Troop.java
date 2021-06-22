@@ -6,21 +6,22 @@ import map.Alignment;
 
 public class Troop extends MilitaryUnit {
 
-	private PriorityQueue<Warrior> troop;
+	private PriorityQueue<Warrior> queue;
 
 	/**
 	 * Instantiates a new Empty Troop
 	 */
 	public Troop(Alignment alignment) {
-		this.troop = new PriorityQueue<Warrior>();
-		super.alignment = alignment;
+		
+		this(new PriorityQueue<Warrior>(), alignment);
 	}
-
+	
 	/**
-	 * Instantiates a new Troop with the given warriors
+	 * Instantiates a new Troop with the given warriors.
 	 */
 	public Troop(PriorityQueue<Warrior> warriors, Alignment alignment) {
-		this.troop = warriors;
+		
+		this.queue = warriors;
 		super.alignment = alignment;
 	}
 
@@ -31,7 +32,7 @@ public class Troop extends MilitaryUnit {
 	 */
 	public void addWarrior(Warrior warrior) {
 
-		this.troop.add(warrior);
+		this.queue.add(warrior);
 	}
 
 	/**
@@ -41,10 +42,12 @@ public class Troop extends MilitaryUnit {
 	@Override
 	public void attack(Warrior anotherWarrior) {
 
-		if (this.troop.peek().getHealthPoints() <= 0)
-			troop.poll();
+		Warrior firstWarrior = this.queue.peek();
+		
+		if (firstWarrior.getHealthPoints() <= 0)
+			this.queue.poll();
 		else
-			this.troop.peek().attack(anotherWarrior);
+			firstWarrior.attack(anotherWarrior);
 	}
 
 	/**
@@ -54,14 +57,14 @@ public class Troop extends MilitaryUnit {
 	@Override
 	public void rest() {
 
-		for (Warrior warrior : this.troop)
+		for (Warrior warrior : this.queue)
 			warrior.rest();
 	}
 
 	@Override
 	public boolean isStillAlive() {
 
-		return this.troop.peek() != null;
+		return this.getHealthPoints() > 0;
 	}
 
 	/**
@@ -72,7 +75,7 @@ public class Troop extends MilitaryUnit {
 
 		double healthPoints = 0;
 
-		for (Warrior warrior : this.troop)
+		for (Warrior warrior : this.queue)
 			healthPoints += warrior.getHealthPoints();
 
 		return healthPoints;
@@ -83,24 +86,27 @@ public class Troop extends MilitaryUnit {
 	 */
 	@Override
 	public Warrior getFirstSoldier() {
-		return troop.peek();
+		
+		return this.queue.peek();
 	}
 
 	public Warrior deleteFirstSoldier() {
 
-		return troop.poll();
+		return this.queue.poll();
 	}
 
 	public int getSize() {
-		return troop.size();
+		
+		return this.queue.size();
 	}
 
 	@Override
 	public String toString() {
-		String out = "";
+		
+		String message = "";
 
-		out += this.getSize() + " " + getFirstSoldier().getClass().getSimpleName() + " " + getAlignment().toString();
+		message += this.getSize() + " " + getFirstSoldier().getClass().getSimpleName() + " " + getAlignment().toString();
 
-		return out;
+		return message;
 	}
 }
