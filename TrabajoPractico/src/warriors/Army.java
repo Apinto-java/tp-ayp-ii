@@ -45,7 +45,7 @@ public class Army extends MilitaryUnit {
 	public boolean isStillAlive() {
 
 		//return this.army.peek() != null;
-		return getHealthPoints() > 0;
+		return getHealthPoints() > 0.0;
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class Army extends MilitaryUnit {
 	@Override
 	public double getHealthPoints() {
 		
-		double healthPoints = 0;
+		double healthPoints = 0.0;
 		
 		for(MilitaryUnit unit : this.army)
 			healthPoints += unit.getHealthPoints();

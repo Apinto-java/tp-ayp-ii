@@ -61,7 +61,8 @@ public class Troop extends MilitaryUnit {
 	@Override
 	public boolean isStillAlive() {
 
-		return this.troop.peek() != null;
+		//return this.troop.peek() != null;
+		return getHealthPoints() > 0.0;
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class Troop extends MilitaryUnit {
 	 */
 	public double getHealthPoints() {
 
-		double healthPoints = 0;
+		double healthPoints = 0.0;
 
 		for (Warrior warrior : this.troop)
 			healthPoints += warrior.getHealthPoints();
