@@ -41,7 +41,7 @@ public class Troop extends MilitaryUnit {
 	@Override
 	public void attack(Warrior anotherWarrior) {
 
-		if (this.troop.peek().getHealthPoints() < 1)
+		if (this.troop.peek().getHealthPoints() <= 0)
 			troop.poll();
 		else
 			this.troop.peek().attack(anotherWarrior);

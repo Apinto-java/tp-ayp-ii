@@ -4,21 +4,39 @@ import warriors.MilitaryUnit;
 
 public class Battle {
 
-//	public static void between(MilitaryUnit thisArmy, MilitaryUnit anotherArmy) {
-//		
-//		while (thisArmy.isStillAlive() && anotherArmy.isStillAlive()) {
-//
-//			thisArmy.attack(anotherArmy.getFirstSoldier());
-//			
-//			if (anotherArmy.isStillAlive())
-//				anotherArmy.attack(thisArmy.getFirstSoldier());
-//		}
-//		
-//		if(thisArmy.isStillAlive()) {
-//			victory(thisArmy);
-//		} else
-//			lose();
-//	}
+	
+	public static boolean between(MilitaryUnit thisArmy, MilitaryUnit anotherArmy) {
+		
+		while(thisArmy.isStillAlive() && anotherArmy.isStillAlive()) {
+			
+			thisArmy.attack(anotherArmy.getFirstSoldier());
+			
+			if(anotherArmy.isStillAlive())
+				anotherArmy.attack(thisArmy.getFirstSoldier());
+			
+		}
+		
+		return thisArmy.isStillAlive();
+		
+	}
+	
+/*
+	public static void between(MilitaryUnit thisArmy, MilitaryUnit anotherArmy) {
+		
+		while (thisArmy.isStillAlive() && anotherArmy.isStillAlive()) {
+
+			thisArmy.attack(anotherArmy.getFirstSoldier());
+			
+			if (anotherArmy.isStillAlive())
+				anotherArmy.attack(thisArmy.getFirstSoldier());
+		}
+		
+		if(thisArmy.isStillAlive()) {
+			victory(thisArmy);
+		} else
+			lose();
+	}
+
 
 	public static void between(MilitaryUnit thisArmy, MilitaryUnit anotherArmy) {
 		boolean ourTurn = true;
@@ -50,5 +68,5 @@ public class Battle {
 	private static void victory(MilitaryUnit thisArmy) {
 		System.out.println("Battle won! With : " + "\n" + thisArmy.toString());
 	}
-
+*/
 }
