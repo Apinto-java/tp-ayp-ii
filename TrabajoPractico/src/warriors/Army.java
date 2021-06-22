@@ -22,7 +22,7 @@ public class Army extends MilitaryUnit {
 	@Override
 	public void attack(Warrior anotherWarrior) {
 
-		if(army.peek().getHealthPoints() <= 0)
+		if(army.peek().getHealthPoints() <= 0.0)
 			army.poll();
 		else
 			this.army.peek().attack(anotherWarrior);
@@ -45,7 +45,7 @@ public class Army extends MilitaryUnit {
 	public boolean isStillAlive() {
 
 		//return this.army.peek() != null;
-		return getHealthPoints() > 0.0;
+		return this.getHealthPoints() > 0.0;
 	}
 	
 	/**
