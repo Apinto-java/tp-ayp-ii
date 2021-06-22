@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 public class Army extends MilitaryUnit {
 
-	private PriorityQueue<MilitaryUnit> army;
+	private PriorityQueue<MilitaryUnit> army = new PriorityQueue<MilitaryUnit>();
 	
 	/**
 	 * 
@@ -22,7 +22,10 @@ public class Army extends MilitaryUnit {
 	@Override
 	public void attack(Warrior anotherWarrior) {
 
-		this.army.peek().attack(anotherWarrior);
+		if(army.peek().getHealthPoints() < 1)
+			army.poll();
+		else
+			this.army.peek().attack(anotherWarrior);
 	}
 	
 	/**
@@ -65,5 +68,16 @@ public class Army extends MilitaryUnit {
 			healthPoints += unit.getHealthPoints();
 		
 		return healthPoints;
+	}
+
+	@Override
+	public String toString() {
+		String out = "";
+		
+		for (MilitaryUnit militaryUnit : army) {
+			out += militaryUnit.toString() + "\n";
+		}
+		
+		return out;
 	}
 }

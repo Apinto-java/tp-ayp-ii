@@ -56,7 +56,7 @@ public class Vertice {
 		
 		for (Map.Entry<String, Arista> path : connections.entrySet()) {
 			out += "\t" + path.getKey() + " " + path.getValue().getDays() + " " + this.troop.getAlignment().toString() + "\n"
-					+ "\t\t" + this.troop.getSize() + " " + this.troop.getFirstSoldier().getClass().getSimpleName();
+					+ "\t\t" + this.troop.getSize() + " " + this.troop.getFirstSoldier().getClass().getSimpleName() + "\n";
 		}
 		
 		return out;

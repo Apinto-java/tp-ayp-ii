@@ -32,4 +32,6 @@ public abstract class MilitaryUnit implements Comparable<MilitaryUnit>{
 		// the only alternate option is that both alignments are equals to each other.
 		return 0;
 	}
+
+	public abstract String toString();
 }

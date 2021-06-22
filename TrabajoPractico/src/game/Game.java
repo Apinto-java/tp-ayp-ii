@@ -142,7 +142,7 @@ public class Game {
 			System.err.println("Failed mission.");
 			out = false;
 		} else {
-			System.out.println("Mision complete"); // debe agregar cuantos dias duro y cuantos quedaron.
+			System.out.println("Mision complete. Won with : "); // debe agregar cuantos dias duro y cuantos quedaron.
 			out = true;
 		}
 		
