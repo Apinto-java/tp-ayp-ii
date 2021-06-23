@@ -22,6 +22,7 @@ public class Factory {
 		factories.put("Reralopes", new ReralopesFactory());
 		factories.put("Radaiteran", new RadaiteranFactory());
 		factories.put("Nortaichian", new NortaichianFactory());
+		factories.put("TestBuddy", new TestBuddyFactory());
 	}
 	
 	//"Wrives"
