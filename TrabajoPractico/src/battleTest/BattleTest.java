@@ -18,8 +18,8 @@ public class BattleTest {
 	public void ownWrivesWinsAgainsEnemyWrives() {
 		
 		// Instantiation of the Troops
-		Troop ownTroop = new Troop(new Wrives(), 1, Alignment.PROPIO);
-		Troop enemyTroop = new Troop(new Wrives(), 1, Alignment.ENEMIGO);
+		Troop ownTroop = new Troop("Wrives", 1, Alignment.PROPIO);
+		Troop enemyTroop = new Troop("Wrives", 1, Alignment.ENEMIGO);
 		
 		//Instantiation of the Armies
 		Army ownArmy = new Army(ownTroop);
@@ -35,8 +35,8 @@ public class BattleTest {
 	public void ownWrivesAgainsTwoEnemyWrivesLoses() {
 		
 		// Instantiation of the Troops
-		Troop ownTroop = new Troop(new Wrives(), 1, Alignment.PROPIO);
-		Troop enemyTroop = new Troop(new Wrives(), 2, Alignment.ENEMIGO);
+		Troop ownTroop = new Troop("Wrives", 1, Alignment.PROPIO);
+		Troop enemyTroop = new Troop("Wrives", 2, Alignment.ENEMIGO);
 		
 		//Instantiation of the Armies
 		Army ownArmy = new Army(ownTroop);

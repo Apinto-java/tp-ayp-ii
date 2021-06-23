@@ -1,7 +1,9 @@
 package warriors;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.PriorityQueue;
 
+import factory.Factory;
 import map.Alignment;
 
 public class Troop extends MilitaryUnit {
@@ -25,12 +27,13 @@ public class Troop extends MilitaryUnit {
 		this(new PriorityQueue<Warrior>(), alignment);
 	}
 
-	public Troop(Warrior warrior, int amount, Alignment alignment) {
+	public Troop(String warrior, int amount, Alignment alignment) {
 		
 		this(alignment);
 		
 		for (int i = 0; i < amount; i++)
-			queue.add(warrior);
+			//this.queue.add(warrior.getClass().getConstructor().newInstance());
+			this.queue.add(Factory.getInstance().getNewWarrior(warrior));
 	}
 	
 	/**
