@@ -21,21 +21,22 @@ public class Graph {
 
 		return grafo;
 	}
-	
+
 	/**
 	 * 
-	 * @param town The Town to add to this map. If it already exists, nothing happens
+	 * @param town The Town to add to this map. If it already exists, nothing
+	 *             happens
 	 * @post Adds 'town' to this Map
 	 */
 	public void addVertex(Vertex town) {
-		
-		if(!towns.containsKey(town.getName())) {
+
+		if (!towns.containsKey(town.getName())) {
 			String name = town.getName();
 			towns.put(name, town);
 		}
-		
+
 	}
-	
+
 	public void addPath(String townA, String townB, int duration) {
 
 		if (!towns.containsKey(townA)) {
@@ -67,6 +68,8 @@ public class Graph {
 		return out;
 	}
 
+	// giving two towns, it returns an array with all the towns (in order) to travel
+	// quickly from townA to townB
 	public ArrayList<String> getShortestPathFrom(String townA, String townB) {
 
 		HashMap<String, String> mapa = this.dijkstra(townA);

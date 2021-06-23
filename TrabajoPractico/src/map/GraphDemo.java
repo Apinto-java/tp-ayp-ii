@@ -10,7 +10,7 @@ import warriors.Warrior;
 import warriors.Wrives;
 import warriorsTest.TestBuddy;
 
-public class GrafoDemo {
+public class GraphDemo {
 
 	public static void main(String[] args) {
 
