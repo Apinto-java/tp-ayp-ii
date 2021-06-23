@@ -97,7 +97,7 @@ public class Game {
 		}
 	}
 	
-	private void startMission() {
+	private void startMission() throws OwnTownException {
 
 		String[] itinerario = obtenerInicioFin();
 		Army ownArmy = getOwnArmy();
@@ -125,9 +125,12 @@ public class Game {
 		return null;
 	}
 
-	private boolean avanzarPor(ArrayList<String> recorrido, Army ownArmy) {
+	private boolean avanzarPor(ArrayList<String> recorrido, Army ownArmy) throws OwnTownException {
 
 		Grafo map = Grafo.getInstance();
+		
+		// validacion para no repetir pueblo propio
+		boolean ourTown = false;
 		
 		while(ownArmy.isStillAlive() && !recorrido.isEmpty()) {
 			
@@ -135,7 +138,13 @@ public class Game {
 			
 			recorrido.remove(0);
 			
-			if(thisTown.isAlly()) {
+//			if(thisTown.isOwn()) {
+//				if(ourTown)
+//					throw new OwnTownException();
+//				
+//				ourTown = true;
+//			} else
+				if(thisTown.isAlly()) {
 				ownArmy.addMilitaryUnit(thisTown.giveTroop());
 				
 				ownArmy.rest();

@@ -63,8 +63,11 @@ public class Vertice {
 	}
 
 	public boolean isAlly() {
-		return (troop.getAlignment().equals(Alignment.ALIADO) || 
-				troop.getAlignment().equals(Alignment.PROPIO));
+		return troop.getAlignment().equals(Alignment.ALIADO);
+	}
+	
+	public boolean isOwn() {
+		return troop.getAlignment().equals(Alignment.PROPIO);
 	}
 
 	public Troop giveTroop() {
