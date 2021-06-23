@@ -12,10 +12,10 @@ public class Army extends MilitaryUnit {
 		this.queue.add(unit);
 	}
 	
-	public Army() {
-		
-		this(null);
-	}
+//	public Army() {
+//		
+//		this(null);
+//	}
 	
 	/**
 	 * 

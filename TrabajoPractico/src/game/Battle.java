@@ -13,7 +13,6 @@ public class Battle {
 			// The enemy army may not be alive after the attack
 			if (unitB.isStillAlive()) {
 				
-				System.out.println("Enemy alive");
 				unitB.attack(unitA.getFirstWarrior());
 			}
 		}
