@@ -48,6 +48,18 @@ public class Vertice {
 		return out;
 	}
 	
+	public int getDaysToTown(String destination) {
+		int duration = 0;
+		
+		// Returns the Edge associated with the destination Vertex
+		if(connections.containsKey(destination)) {
+			Arista travelToTown = connections.get(destination);
+			duration = travelToTown.getDays();
+		}
+		
+		return duration;
+	}
+	
 	@Override
 	public String toString() {
 		String out = "";

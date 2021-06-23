@@ -21,10 +21,12 @@ public class Game {
 	
 	private static Army ownArmy;
 	private static String[] tripRoute;
+	private static int days;
 
 	public static void main(String[] args) {
 		
 		scan = new Scanner(System.in);
+		days = 0;
 		
 		loadMapFromPath();
 		startMission();		
@@ -110,7 +112,7 @@ public class Game {
 				line = reader.readLine();
 			}
 			
-			System.out.println(Grafo.getInstance());
+			//System.out.println(Grafo.getInstance());
 			
 		// Agregar excp IO
 		} catch (Exception e) {
@@ -145,8 +147,10 @@ public class Game {
 
 		boolean done = avanzarPor(caminoMasCorto, ownArmy);
 		
-		if(done)
+		if(done) {
 			System.out.println("Mission accomplished! Ended with: " + ownArmy.toString());
+			System.out.println("Days: " + days);
+		}
 		else
 			System.err.println("Mission failed.");
 	}
@@ -171,6 +175,13 @@ public class Game {
 			
 			Vertice thisTown = map.getTown(recorrido.get(0));
 			
+			if(recorrido.size() >= 2) {
+				// Store the destination in a String variable so we can get how much days it would take to get there
+				String destination = recorrido.get(1);
+				// It retrieves the days it would take to get to the destination
+				days += thisTown.getDaysToTown(destination);
+			}
+			
 			recorrido.remove(0);
 			
 				if(thisTown.isAlly()) {
@@ -179,6 +190,8 @@ public class Game {
 				ownArmy.rest();
 			} else
 				Battle.between(ownArmy, thisTown.getArmy());
+				
+			days += 1;	//One day used either for resting or for combat
 		}
 		
 		return ownArmy.isStillAlive();
