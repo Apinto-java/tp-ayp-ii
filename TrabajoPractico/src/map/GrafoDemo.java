@@ -52,7 +52,7 @@ public class GrafoDemo {
 		map.addPath("C", "D", 15);
 		map.addPath("A", "C", 12);
 		map.addPath("A", "D", 3);
-		map.addPath("A", "E", 3);
+		map.addPath("A", "E", 30);
 		map.addPath("E", "D", 1);
 		map.addPath("B", "C", 19);
 		map.addPath("B", "D", 9);

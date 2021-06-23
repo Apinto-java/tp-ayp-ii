@@ -12,11 +12,9 @@ public class BattleDemo {
 
 	public static void main(String[] args) {
 		
-		Army ownArmy = new Army();
 		Troop ownTroop = new Troop(Alignment.PROPIO);
 		Troop allyTroop = new Troop(Alignment.ALIADO);
 		Troop enemyTroop = new Troop(Alignment.ENEMIGO);
-		Army enemyArmy = new Army();
 		Troop firstEnemyTroop = new Troop(Alignment.ENEMIGO);
 		Troop secondEnemyTroop = new Troop(Alignment.ENEMIGO);
 		
@@ -40,10 +38,10 @@ public class BattleDemo {
 			secondEnemyTroop.addWarrior(new Radaiteran());
 		}
 		
-		ownArmy.addMilitaryUnit(ownTroop);
+		Army ownArmy = new Army(ownTroop);
 		ownArmy.addMilitaryUnit(allyTroop);
 		
-		enemyArmy.addMilitaryUnit(firstEnemyTroop);
+		Army enemyArmy = new Army(firstEnemyTroop);
 		enemyArmy.addMilitaryUnit(secondEnemyTroop);
 		
 		System.out.println(ownTroop.toString());
