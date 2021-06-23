@@ -188,5 +188,4 @@ public class NortaichianTest {
 		Assert.assertEquals(464, testBuddy.getHealthPoints(), 0.01);
 	}
 
-	// falta ataque de otras razas
 }

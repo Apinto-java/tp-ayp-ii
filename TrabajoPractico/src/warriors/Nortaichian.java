@@ -59,7 +59,7 @@ public class Nortaichian extends Warrior implements Curable {
 		
 		super.reduceHealthPoints(damage);
 			
-		if (this.timesDoubleDamage == 0) // En duda.
+		if (this.timesDoubleDamage == 0) 
 			this.timesDoubleDamage = 2;
 	}
 	

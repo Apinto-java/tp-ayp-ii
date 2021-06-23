@@ -73,7 +73,6 @@ public class Troop extends MilitaryUnit {
 	@Override
 	public boolean isStillAlive() {
 
-		//return this.troop.peek() != null;
 		return this.getHealthPoints() > 0.0;
 	}
 

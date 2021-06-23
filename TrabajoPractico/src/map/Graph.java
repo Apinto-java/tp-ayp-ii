@@ -54,24 +54,6 @@ public class Graph {
 		towns.get(townB).addConnection(newPath);
 	}
 
-//	public void addPath(String townA, String townB, int duration) {
-//		
-//		if (!towns.containsKey(townA)) {
-//			Vertice newTownA = new Vertice(townA);
-//			towns.put(townA, newTownA);
-//		}
-//
-//		if (!towns.containsKey(townB)) {
-//			Vertice newTownB = new Vertice(townB);
-//			towns.put(townB, newTownB);
-//		}
-//
-//		Arista newPath = new Arista(towns.get(townA), towns.get(townB), duration);
-//
-//		towns.get(townA).addConnection(newPath);
-//		towns.get(townB).addConnection(newPath);
-//	}
-
 	@Override
 	public String toString() {
 

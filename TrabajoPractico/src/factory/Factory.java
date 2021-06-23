@@ -26,7 +26,6 @@ public class Factory {
 		factories.put("TestBuddy", new TestBuddyFactory());
 	}
 	
-	//"Wrives"
 	public Warrior getNewWarrior(String type) throws NoSuchWarriorException {
 		if(!factories.containsKey(type))
 			throw new NoSuchWarriorException("Warrior " + type + " does not exist");

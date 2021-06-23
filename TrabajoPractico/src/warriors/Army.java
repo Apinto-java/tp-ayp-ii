@@ -12,11 +12,6 @@ public class Army extends MilitaryUnit {
 		this.queue.add(unit);
 	}
 	
-//	public Army() {
-//		
-//		this(null);
-//	}
-	
 	/**
 	 * 
 	 * @param unit MilitaryUnit to add
@@ -55,7 +50,6 @@ public class Army extends MilitaryUnit {
 	 */
 	public boolean isStillAlive() {
 
-		//return this.army.peek() != null;
 		return this.getHealthPoints() > 0.0;
 	}
 	
