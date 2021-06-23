@@ -188,11 +188,12 @@ public class Game {
 				ownArmy.addMilitaryUnit(thisTown.giveTroop());
 				
 				ownArmy.rest();
+				days += 1;	//One day used either for resting
 			} else if(thisTown.isEnemy()){
 				Battle.between(ownArmy, thisTown.getArmy());
+				days += 1;	//One day for combat
 			}
-				
-			days += 1;	//One day used either for resting or for combat
+		
 		}
 		
 		return ownArmy.isStillAlive();
