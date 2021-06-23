@@ -2,6 +2,7 @@ package factory;
 
 import java.util.HashMap;
 
+import exceptions.NoSuchWarriorException;
 import warriors.Warrior;
 
 public class Factory {
@@ -26,7 +27,10 @@ public class Factory {
 	}
 	
 	//"Wrives"
-	public Warrior getNewWarrior(String type) {
+	public Warrior getNewWarrior(String type) throws NoSuchWarriorException {
+		if(!factories.containsKey(type))
+			throw new NoSuchWarriorException("Warrior " + type + " does not exist");
+		
 		return factories.get(type).getNewWarrior();
 	}
 	
