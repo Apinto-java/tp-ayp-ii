@@ -25,6 +25,7 @@ public class Vertex {
 		return name;
 	}
 	
+	// Adds a @param newPat to the connections list, using the other town's name as a reference
 	public void addConnection(Edge newPath) {
 		
 		if(name.equals(newPath.getTownA().getName())) {
@@ -38,6 +39,9 @@ public class Vertex {
 		return Collections.unmodifiableMap(connections);
 	}
 	
+	/*
+	 * returns all the connections this vertex has
+	 */
 	public HashSet<Edge> getNearPathsList(){
 		HashSet<Edge> out = new HashSet<>();
 		
@@ -86,6 +90,7 @@ public class Vertex {
 		return troop.getAlignment().equals(Alignment.ENEMIGO);
 	}
 
+	// returns half of the population, in order to be added to an ally army
 	public Troop giveTroop() {
 		
 		int size = this.troop.getSize() / 2;
