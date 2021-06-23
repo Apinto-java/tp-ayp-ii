@@ -2,6 +2,7 @@ package map;
 
 import java.util.PriorityQueue;
 
+import exceptions.NonExistentPathException;
 import warriors.Nortaichian;
 import warriors.Radaiteran;
 import warriors.Reralopes;
@@ -66,7 +67,11 @@ public class GraphDemo {
 		System.out.println(map.dijkstra("A"));
 
 		System.out.println("------------");
-
-		System.out.println(map.getShortestPathFrom("A", "E"));
+		
+		try {
+			System.out.println(map.getShortestPathFrom("A", "E"));
+		} catch (NonExistentPathException e) {
+			System.err.println(e);
+		}
 	}
 }

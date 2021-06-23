@@ -2,6 +2,9 @@ package map;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
+
+import exceptions.NonExistentPathException;
+
 import java.util.ArrayList;
 
 public class Graph {
@@ -70,7 +73,7 @@ public class Graph {
 
 	// giving two towns, it returns an array with all the towns (in order) to travel
 	// quickly from townA to townB
-	public ArrayList<String> getShortestPathFrom(String townA, String townB) {
+	public ArrayList<String> getShortestPathFrom(String townA, String townB) throws NonExistentPathException {
 
 		HashMap<String, String> mapa = this.dijkstra(townA);
 
@@ -79,10 +82,13 @@ public class Graph {
 		return out;
 	}
 
-	private ArrayList<String> getShortestPathFrom(HashMap<String, String> mapa, String townA, String townB) {
+	private ArrayList<String> getShortestPathFrom(HashMap<String, String> mapa, String townA, String townB) throws NonExistentPathException {
 
 		ArrayList<String> arreglo = new ArrayList<>();
-
+		
+		if(townB == null)
+			throw new NonExistentPathException();
+		
 		if (!townB.equals(townA))
 			arreglo = this.getShortestPathFrom(mapa, townA, mapa.get(townB));
 

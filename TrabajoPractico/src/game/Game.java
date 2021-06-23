@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import exceptions.NonExistentPathException;
 import exceptions.OwnTownException;
 import exceptions.WrongLineEx;
 import map.Alignment;
@@ -31,7 +32,11 @@ public class Game {
 		days = 0;
 		
 		loadMapFromPath();
-		startMission();		
+		try {
+			startMission();	
+		} catch(NonExistentPathException e) {
+			System.err.println(e);
+		}
 	}
 	
 	private static void loadMapFromPath() {
@@ -135,17 +140,18 @@ public class Game {
 	 * 
 	 * @return The menu option selected by the use. If it is invalid it will ask the user
 	 * again for input
+	 * @throws NonExistentPathException 
 	 */
 	
-	private static void startMission() {
+	private static void startMission() throws NonExistentPathException {
 
 		String[] itinerario = getTripRoute();
 		Army ownArmy = getOwnArmy();
 
 		Graph map = Graph.getInstance();
-
+		
 		ArrayList<String> caminoMasCorto = map.getShortestPathFrom(itinerario[0], itinerario[1]);
-
+			
 		boolean done = avanzarPor(caminoMasCorto, ownArmy);
 		
 		if(done) {
