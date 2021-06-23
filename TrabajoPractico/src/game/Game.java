@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import exceptions.OwnTownException;
+import exceptions.WrongLineEx;
 import map.Alignment;
 import map.Grafo;
 import map.Vertice;
@@ -49,7 +50,7 @@ public class Game {
 		}
 	}
 
-	private static void loadFile(String pFile) throws Exception, OwnTownException {
+	private static void loadFile(String pFile) throws Exception, OwnTownException, WrongLineEx {
 		BufferedReader reader = new BufferedReader(new FileReader(pFile));
 
 		int lineCount=1;
@@ -62,7 +63,7 @@ public class Game {
 			while (line != null) { 
 				
 				line = line.trim();
-				if(line.isEmpty() || line.isBlank()) throw new Error("La línea está vacía."); // Agregar excepciones pendientes.
+				if(line.isEmpty() || line.isBlank()) throw new WrongLineEx();
 				
 				if(lineCount == 1) 
 					graphSize = getTownsQty(line);
@@ -113,15 +114,14 @@ public class Game {
 				line = reader.readLine();
 			}
 			
-			//System.out.println(Grafo.getInstance());
-			
-		// Agregar excp IO
-		} catch (Exception e) {
-			e.printStackTrace();
-//			System.err.println(e);
-		} finally {
+		} catch (IOException e) {
+			System.err.println(e);
+		} catch (WrongLineEx e) {
+			System.err.println(e);
+		}finally {
 			reader.close();
 		}
+			
 	}
 	
 	private static int getTownsQty(String linea) {
@@ -184,6 +184,7 @@ public class Game {
 			}
 			
 			recorrido.remove(0);
+			
 				if(thisTown.isAlly()) {
 				ownArmy.addMilitaryUnit(thisTown.giveTroop());
 				
