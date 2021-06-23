@@ -1,22 +1,22 @@
 package map;
 
-public class Arista {
+public class Edge {
 
-	private Vertice townA;
-	private Vertice townB;
+	private Vertex townA;
+	private Vertex townB;
 	private int days;
 
-	public Arista(Vertice a, Vertice b, int days) {
+	public Edge(Vertex a, Vertex b, int days) {
 		this.townA = a;
 		this.townB = b;
 		this.days = days;
 	}
 
-	public Vertice getTownA() {
+	public Vertex getTownA() {
 		return this.townA;
 	}
 
-	public Vertice getTownB() {
+	public Vertex getTownB() {
 		return this.townB;
 	}
 

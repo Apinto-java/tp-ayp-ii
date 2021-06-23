@@ -8,15 +8,15 @@ import java.util.Map;
 import warriors.MilitaryUnit;
 import warriors.Troop;
 
-public class Vertice {
+public class Vertex {
 
 	//	String	-> Name of the Town
 	//	Path	-> Path to the Town
-	private Map<String, Arista> connections = new HashMap<String, Arista>();
+	private Map<String, Edge> connections = new HashMap<String, Edge>();
 	private String name;
 	private Troop troop;
 	
-	public Vertice(String name, Troop troop) {
+	public Vertex(String name, Troop troop) {
 		this.name = name;
 		this.troop = troop;
 	}
@@ -25,7 +25,7 @@ public class Vertice {
 		return name;
 	}
 	
-	public void addConnection(Arista newPath) {
+	public void addConnection(Edge newPath) {
 		
 		if(name.equals(newPath.getTownA().getName())) {
 			connections.put(newPath.getTownB().getName(), newPath);
@@ -34,12 +34,12 @@ public class Vertice {
 		}
 	}
 	
-	public Map<String, Arista> getConnectionList() {
+	public Map<String, Edge> getConnectionList() {
 		return Collections.unmodifiableMap(connections);
 	}
 	
-	public HashSet<Arista> getNearPathsList(){
-		HashSet<Arista> out = new HashSet<>();
+	public HashSet<Edge> getNearPathsList(){
+		HashSet<Edge> out = new HashSet<>();
 		
 		for (String path : connections.keySet()) {
 			out.add(connections.get(path));
@@ -53,7 +53,7 @@ public class Vertice {
 		
 		// Returns the Edge associated with the destination Vertex
 		if(connections.containsKey(destination)) {
-			Arista travelToTown = connections.get(destination);
+			Edge travelToTown = connections.get(destination);
 			duration = travelToTown.getDays();
 		}
 		
@@ -66,7 +66,7 @@ public class Vertice {
 		
 		out += name + "\n";
 		
-		for (Map.Entry<String, Arista> path : connections.entrySet()) {
+		for (Map.Entry<String, Edge> path : connections.entrySet()) {
 			out += "\t" + path.getKey() + " " + path.getValue().getDays() + " " + this.troop.getAlignment().toString() + "\n"
 					+ "\t\t" + this.troop.getSize() + " " + this.troop.getFirstWarrior().getClass().getSimpleName() + "\n";
 		}

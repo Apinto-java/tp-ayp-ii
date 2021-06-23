@@ -10,8 +10,8 @@ import java.util.Scanner;
 import exceptions.OwnTownException;
 import exceptions.WrongLineEx;
 import map.Alignment;
-import map.Grafo;
-import map.Vertice;
+import map.Graph;
+import map.Vertex;
 import warriors.Army;
 import warriors.MilitaryUnit;
 import warriors.Troop;
@@ -90,9 +90,9 @@ public class Game {
 					}
 					
 					Troop troop = new Troop(warrior, soldiers, Alignment.valueOf(alignment.trim()));
-					Vertice vertex = new Vertice(idTown, troop);
+					Vertex vertex = new Vertex(idTown, troop);
 					
-					Grafo.getInstance().addVertex(vertex);
+					Graph.getInstance().addVertex(vertex);
 				}
 				
 				if(lineCount == graphSize + 2) {
@@ -107,7 +107,7 @@ public class Game {
 					String vertexB = edges[1];
 					int duration = Integer.parseInt(edges[2]);
 					
-					Grafo.getInstance().addPath(vertexA, vertexB, duration);
+					Graph.getInstance().addPath(vertexA, vertexB, duration);
 				}
 				
 				lineCount++;
@@ -142,9 +142,9 @@ public class Game {
 		String[] itinerario = getTripRoute();
 		Army ownArmy = getOwnArmy();
 
-		Grafo map = Grafo.getInstance();
+		Graph map = Graph.getInstance();
 
-		ArrayList<String> caminoMasCorto = map.obtenerCaminoMasCortoDesde(itinerario[0], itinerario[1]);
+		ArrayList<String> caminoMasCorto = map.getShortestPathFrom(itinerario[0], itinerario[1]);
 
 		boolean done = avanzarPor(caminoMasCorto, ownArmy);
 		
@@ -167,14 +167,14 @@ public class Game {
 
 	private static boolean avanzarPor(ArrayList<String> recorrido, Army ownArmy) {
 
-		Grafo map = Grafo.getInstance();
+		Graph map = Graph.getInstance();
 		
 		// validacion para no repetir pueblo propio
 		boolean ourTown = false;
 		
 		while(ownArmy.isStillAlive() && !recorrido.isEmpty()) {
 			
-			Vertice thisTown = map.getTown(recorrido.get(0));
+			Vertex thisTown = map.getTown(recorrido.get(0));
 			
 			if(recorrido.size() >= 2) {
 				// Store the destination in a String variable so we can get how much days it would take to get there
