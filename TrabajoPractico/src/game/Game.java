@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import exceptions.OwnTownException;
 import map.Alignment;
 import map.Grafo;
 import map.Vertice;
@@ -183,7 +184,6 @@ public class Game {
 			}
 			
 			recorrido.remove(0);
-			
 				if(thisTown.isAlly()) {
 				ownArmy.addMilitaryUnit(thisTown.giveTroop());
 				

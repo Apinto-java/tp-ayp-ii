@@ -3,6 +3,7 @@ package battleTest;
 import org.junit.Assert;
 import org.junit.Test;
 
+import exceptions.NoSuchWarriorException;
 import game.Battle;
 import map.Alignment;
 import warriors.Army;
@@ -13,7 +14,7 @@ import warriors.Wrives;
 public class BattleTest {
 
 	@Test
-	public void ownWrivesWinsAgainsEnemyWrives() {
+	public void ownWrivesWinsAgainsEnemyWrives() throws NoSuchWarriorException {
 		
 		// Instantiation of the Troops
 		Troop ownTroop = new Troop("Wrives", 1, Alignment.PROPIO);
@@ -30,7 +31,7 @@ public class BattleTest {
 	}
 	
 	@Test
-	public void ownWrivesAgainsTwoEnemyWrivesLoses() {
+	public void ownWrivesAgainsTwoEnemyWrivesLoses() throws NoSuchWarriorException {
 		
 		// Instantiation of the Troops
 		Troop ownTroop = new Troop("Wrives", 1, Alignment.PROPIO);
