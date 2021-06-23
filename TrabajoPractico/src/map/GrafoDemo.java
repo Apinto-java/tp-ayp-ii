@@ -42,22 +42,22 @@ public class GrafoDemo {
 			pq5.add(new TestBuddy());
 		}
 		
-		Vertice A = new Vertice("A", new Troop(pq1, Alignment.PROPIO));
-		Vertice B = new Vertice("B", new Troop(pq2, Alignment.ALIADO));
-		Vertice C = new Vertice("C", new Troop(pq3, Alignment.ALIADO));
-		Vertice D = new Vertice("D", new Troop(pq4, Alignment.ENEMIGO));
-		Vertice E = new Vertice("E", new Troop(pq5, Alignment.ENEMIGO));
+		map.addVertex(new Vertice("A", new Troop(pq1, Alignment.PROPIO)));
+		map.addVertex(new Vertice("B", new Troop(pq2, Alignment.ALIADO)));
+		map.addVertex(new Vertice("C", new Troop(pq3, Alignment.ALIADO)));
+		map.addVertex(new Vertice("D", new Troop(pq4, Alignment.ENEMIGO)));
+		map.addVertex(new Vertice("E", new Troop(pq5, Alignment.ENEMIGO)));
 		
-		map.addPath(A, B, 10);
-		map.addPath(C, D, 15);
-		map.addPath(A, C, 12);
-		map.addPath(A, D, 3);
-		map.addPath(A, E, 3);
-		map.addPath(E, D, 1);
-		map.addPath(B, C, 19);
-		map.addPath(B, D, 9);
-		map.addPath(A, D, 3);
-		map.addPath(B, E, 2);
+		map.addPath("A", "B", 10);
+		map.addPath("C", "D", 15);
+		map.addPath("A", "C", 12);
+		map.addPath("A", "D", 3);
+		map.addPath("A", "E", 3);
+		map.addPath("E", "D", 1);
+		map.addPath("B", "C", 19);
+		map.addPath("B", "D", 9);
+		map.addPath("A", "D", 3);
+		map.addPath("B", "E", 2);
 		
 		System.out.println(map.toString());
 

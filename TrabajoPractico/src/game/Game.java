@@ -106,7 +106,12 @@ public class Game {
 
 		ArrayList<String> caminoMasCorto = map.obtenerCaminoMasCortoDesde(itinerario[0], itinerario[1]);
 
-		avanzarPor(caminoMasCorto, ownArmy);
+		boolean done = avanzarPor(caminoMasCorto, ownArmy);
+		
+		if(done)
+			System.out.println("Mission complete. Ended with : " + ownArmy.toString());
+		else
+			System.err.println("Mission failed.");
 	}
 
 	private Army getOwnArmy() {
@@ -116,36 +121,28 @@ public class Game {
 
 	// devuelve en [0] el inicio y en [1] el final
 	private String[] obtenerInicioFin() {
+		// TODO
 		return null;
 	}
 
-	// INCOMPLETO
 	private boolean avanzarPor(ArrayList<String> recorrido, Army ownArmy) {
-		
-		boolean out = false;
+
 		Grafo map = Grafo.getInstance();
 		
-		Vertice thisTown = map.getTown(recorrido.get(0));
-		
-		if(thisTown.isAlly()) {
-			ownArmy.addMilitaryUnit(thisTown.giveTroop());
+		while(ownArmy.isStillAlive() && !recorrido.isEmpty()) {
 			
-			ownArmy.rest();
-		} else{
-			Battle.between(ownArmy, thisTown.getArmy());
-		}
-		
-		if(ownArmy.isStillAlive() && !recorrido.isEmpty()) {
+			Vertice thisTown = map.getTown(recorrido.get(0));
+			
 			recorrido.remove(0);
-			avanzarPor(recorrido, ownArmy);
-		} else if (!ownArmy.isStillAlive()){
-			System.err.println("Failed mission.");
-			out = false;
-		} else {
-			System.out.println("Mision complete. Won with : "); // debe agregar cuantos dias duro y cuantos quedaron.
-			out = true;
+			
+			if(thisTown.isAlly()) {
+				ownArmy.addMilitaryUnit(thisTown.giveTroop());
+				
+				ownArmy.rest();
+			} else
+				Battle.between(ownArmy, thisTown.getArmy());
 		}
 		
-		return out;
+		return ownArmy.isStillAlive();
 	}
 }

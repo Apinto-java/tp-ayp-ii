@@ -36,22 +36,22 @@ public class Grafo {
 		
 	}
 	
-	public void addPath(Vertice townA, Vertice townB, int duration) {
+	public void addPath(String townA, String townB, int duration) {
 
-		if (!towns.containsKey(townA.getName())) {
-			String newTownA = townA.getName();
-			towns.put(newTownA, townA);
+		if (!towns.containsKey(townA)) {
+			Vertice newTownA = new Vertice(townA, null);
+			towns.put(townA, newTownA);
 		}
 
-		if (!towns.containsKey(townB.getName())) {
-			String newTownB = townB.getName();
-			towns.put(newTownB, townB);
+		if (!towns.containsKey(townB)) {
+			Vertice newTownB = new Vertice(townB, null);
+			towns.put(townB, newTownB);
 		}
 
-		Arista newPath = new Arista(townA, townB, duration);
+		Arista newPath = new Arista(towns.get(townA), towns.get(townB), duration);
 
-		townA.addConnection(newPath);
-		townB.addConnection(newPath);
+		towns.get(townA).addConnection(newPath);
+		towns.get(townB).addConnection(newPath);
 	}
 
 //	public void addPath(String townA, String townB, int duration) {
