@@ -77,17 +77,17 @@ public class Graph {
 
 		HashMap<String, String> mapa = this.dijkstra(townA);
 
+		if (mapa.get(townB) == null)
+			throw new NonExistentPathException();
+		
 		ArrayList<String> out = getShortestPathFrom(mapa, townA, townB);
 
 		return out;
 	}
 
-	private ArrayList<String> getShortestPathFrom(HashMap<String, String> mapa, String townA, String townB) throws NonExistentPathException {
+	private ArrayList<String> getShortestPathFrom(HashMap<String, String> mapa, String townA, String townB) {
 
 		ArrayList<String> arreglo = new ArrayList<>();
-		
-		if(townB == null)
-			throw new NonExistentPathException();
 		
 		if (!townB.equals(townA))
 			arreglo = this.getShortestPathFrom(mapa, townA, mapa.get(townB));
