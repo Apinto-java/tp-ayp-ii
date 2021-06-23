@@ -1,0 +1,22 @@
+9
+WhiteRun 150 Nortaichian propio
+Falkreath 10 Reralopes aliado
+Markarth 50 Wrives enemigo
+Riften 30 Radaiteran aliado
+Solitude 150 Nortaichian aliado
+Morthal 10 Radaiteran aliado
+Dawnstar 80 Radaiteran aliado
+Winterhold 100 Wrives enemigo
+Windhelm 150 Radaiteran enemigo
+WhiteRun -> Windhelm
+WhiteRun Morthal 5
+WhiteRun Solitude 20
+Morthal Solitude 10
+Solitude Markarth 10
+Solitude Falkreath 40
+Markrath Falkreath 20
+Falkreath Riften 15
+Riften Winterhold 20
+Riften Windhelm 40
+Winterhold Dawnstar 5
+Dawnstar Windhelm 12
