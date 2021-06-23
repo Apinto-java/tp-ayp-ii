@@ -81,6 +81,10 @@ public class Vertice {
 	public boolean isOwn() {
 		return troop.getAlignment().equals(Alignment.PROPIO);
 	}
+	
+	public boolean isEnemy() {
+		return troop.getAlignment().equals(Alignment.ENEMIGO);
+	}
 
 	public Troop giveTroop() {
 		
