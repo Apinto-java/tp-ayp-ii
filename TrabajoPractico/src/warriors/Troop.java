@@ -3,6 +3,7 @@ package warriors;
 import java.lang.reflect.InvocationTargetException;
 import java.util.PriorityQueue;
 
+import exceptions.NoSuchWarriorException;
 import factory.Factory;
 import map.Alignment;
 
@@ -27,7 +28,7 @@ public class Troop extends MilitaryUnit {
 		this(new PriorityQueue<Warrior>(), alignment);
 	}
 
-	public Troop(String warrior, int amount, Alignment alignment) {
+	public Troop(String warrior, int amount, Alignment alignment) throws NoSuchWarriorException {
 		
 		this(alignment);
 		
