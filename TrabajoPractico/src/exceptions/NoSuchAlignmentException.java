@@ -9,10 +9,12 @@ public class NoSuchAlignmentException extends Exception {
 	
 	public NoSuchAlignmentException() {
 		super("The alignment does not exist");
+		
 	}
 	
 	public NoSuchAlignmentException(String s) {
 		super(s);
+		
 	}
 	
 }
