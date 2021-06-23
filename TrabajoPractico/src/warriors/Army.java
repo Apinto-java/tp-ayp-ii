@@ -32,13 +32,11 @@ public class Army extends MilitaryUnit {
 	 */
 	@Override
 	public void attack(Warrior anotherWarrior) {
-
-		MilitaryUnit firstUnit = this.queue.peek();
 		
-		if(firstUnit.getHealthPoints() <= 0.0)
-			this.deleteFirstUnit();
-		else
-			firstUnit.attack(anotherWarrior);
+		if (this.getFirstUnit().getHealthPoints() <= 0.0)
+			this.queue.poll();
+		
+		this.getFirstUnit().attack(anotherWarrior);
 	}
 
 	/**
@@ -61,18 +59,18 @@ public class Army extends MilitaryUnit {
 		return this.getHealthPoints() > 0.0;
 	}
 	
+	public MilitaryUnit getFirstUnit() {
+		
+		return this.queue.peek();
+	}
+	
 	/**
 	 * @return First Warrior that is going to battle in this Army
 	 */
 	@Override
 	public Warrior getFirstWarrior() {
 
-		return queue.peek().getFirstWarrior();
-	}
-	
-	private void deleteFirstUnit() {
-		
-		this.queue.poll();
+		return this.queue.peek().getFirstWarrior();
 	}
 	
 	/**

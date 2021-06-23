@@ -31,9 +31,9 @@ public class Troop extends MilitaryUnit {
 		
 		this(alignment);
 		
-		for (int i = 0; i < amount; i++)
-			//this.queue.add(warrior.getClass().getConstructor().newInstance());
+		for(int i = 0; i < amount; i++) {
 			this.queue.add(Factory.getInstance().getNewWarrior(warrior));
+		}
 	}
 	
 	/**
@@ -52,13 +52,11 @@ public class Troop extends MilitaryUnit {
 	 */
 	@Override
 	public void attack(Warrior anotherWarrior) {
-
-		Warrior firstWarrior = this.getFirstWarrior();
 		
-		if (firstWarrior.getHealthPoints() <= 0)
+		if (this.getFirstWarrior().getHealthPoints() <= 0)
 			this.deleteFirstSoldier();
-		else
-			firstWarrior.attack(anotherWarrior);
+		
+		this.getFirstWarrior().attack(anotherWarrior);
 	}
 
 	/**
@@ -116,7 +114,8 @@ public class Troop extends MilitaryUnit {
 		
 		String message = "";
 
-		message += this.getSize() + " " + getFirstWarrior().getClass().getSimpleName() + " " + getAlignment().toString();
+		for (Warrior warrior : this.queue)
+			message += warrior.getClass().getSimpleName() + " "+ warrior.getHealthPoints() + "\n";
 
 		return message;
 	}
