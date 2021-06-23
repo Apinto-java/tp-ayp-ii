@@ -83,7 +83,7 @@ public class Graph {
 
 		ArrayList<String> arreglo = new ArrayList<>();
 
-		if (townB != townA)
+		if (!townB.equals(townA))
 			arreglo = this.getShortestPathFrom(mapa, townA, mapa.get(townB));
 
 		arreglo.add(townB);
