@@ -4,20 +4,20 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
 
-public class Grafo {
+public class Graph {
 
-	private HashMap<String, Vertice> towns;
-	private static Grafo grafo = null;
+	private HashMap<String, Vertex> towns;
+	private static Graph grafo = null;
 
-	private Grafo() {
+	private Graph() {
 
-		this.towns = new HashMap<String, Vertice>();
+		this.towns = new HashMap<String, Vertex>();
 	}
 
-	public static Grafo getInstance() {
+	public static Graph getInstance() {
 
 		if (grafo == null)
-			grafo = new Grafo();
+			grafo = new Graph();
 
 		return grafo;
 	}
@@ -27,7 +27,7 @@ public class Grafo {
 	 * @param town The Town to add to this map. If it already exists, nothing happens
 	 * @post Adds 'town' to this Map
 	 */
-	public void addVertex(Vertice town) {
+	public void addVertex(Vertex town) {
 		
 		if(!towns.containsKey(town.getName())) {
 			String name = town.getName();
@@ -39,16 +39,16 @@ public class Grafo {
 	public void addPath(String townA, String townB, int duration) {
 
 		if (!towns.containsKey(townA)) {
-			Vertice newTownA = new Vertice(townA, null);
+			Vertex newTownA = new Vertex(townA, null);
 			towns.put(townA, newTownA);
 		}
 
 		if (!towns.containsKey(townB)) {
-			Vertice newTownB = new Vertice(townB, null);
+			Vertex newTownB = new Vertex(townB, null);
 			towns.put(townB, newTownB);
 		}
 
-		Arista newPath = new Arista(towns.get(townA), towns.get(townB), duration);
+		Edge newPath = new Edge(towns.get(townA), towns.get(townB), duration);
 
 		towns.get(townA).addConnection(newPath);
 		towns.get(townB).addConnection(newPath);
@@ -78,28 +78,28 @@ public class Grafo {
 		String out = towns.keySet().toString();
 		out += "\n";
 
-		for (HashMap.Entry<String, Vertice> town : towns.entrySet()) {
+		for (HashMap.Entry<String, Vertex> town : towns.entrySet()) {
 			out += town.getValue().toString();
 		}
 
 		return out;
 	}
 
-	public ArrayList<String> obtenerCaminoMasCortoDesde(String townA, String townB) {
+	public ArrayList<String> getShortestPathFrom(String townA, String townB) {
 
 		HashMap<String, String> mapa = this.dijkstra(townA);
 
-		ArrayList<String> out = obtenerCaminoMasCortoDesde(mapa, townA, townB);
+		ArrayList<String> out = getShortestPathFrom(mapa, townA, townB);
 
 		return out;
 	}
 
-	private ArrayList<String> obtenerCaminoMasCortoDesde(HashMap<String, String> mapa, String townA, String townB) {
+	private ArrayList<String> getShortestPathFrom(HashMap<String, String> mapa, String townA, String townB) {
 
 		ArrayList<String> arreglo = new ArrayList<>();
 
 		if (townB != townA)
-			arreglo = this.obtenerCaminoMasCortoDesde(mapa, townA, mapa.get(townB));
+			arreglo = this.getShortestPathFrom(mapa, townA, mapa.get(townB));
 
 		arreglo.add(townB);
 
@@ -131,10 +131,10 @@ public class Grafo {
 			if (!visited.get(aTown)) {
 				visited.put(aTown, true);
 
-				for (HashMap.Entry<String, Arista> path : towns.get(aTown).getConnectionList().entrySet()) {
+				for (HashMap.Entry<String, Edge> path : towns.get(aTown).getConnectionList().entrySet()) {
 
 					String nextTown = path.getKey();
-					Arista nextPath = path.getValue();
+					Edge nextPath = path.getValue();
 
 					if (!visited.get(nextTown)) {
 
@@ -153,7 +153,7 @@ public class Grafo {
 		return precursors;
 	}
 
-	public Vertice getTown(String townName) {
+	public Vertex getTown(String townName) {
 		return towns.get(townName);
 	}
 }

@@ -14,7 +14,7 @@ public class GrafoDemo {
 
 	public static void main(String[] args) {
 
-		Grafo map = Grafo.getInstance();
+		Graph map = Graph.getInstance();
 		
 		PriorityQueue<Warrior> pq1 = new PriorityQueue<Warrior>();
 		PriorityQueue<Warrior> pq2 = new PriorityQueue<Warrior>();
@@ -42,11 +42,11 @@ public class GrafoDemo {
 			pq5.add(new TestBuddy());
 		}
 		
-		map.addVertex(new Vertice("A", new Troop(pq1, Alignment.PROPIO)));
-		map.addVertex(new Vertice("B", new Troop(pq2, Alignment.ALIADO)));
-		map.addVertex(new Vertice("C", new Troop(pq3, Alignment.ALIADO)));
-		map.addVertex(new Vertice("D", new Troop(pq4, Alignment.ENEMIGO)));
-		map.addVertex(new Vertice("E", new Troop(pq5, Alignment.ENEMIGO)));
+		map.addVertex(new Vertex("A", new Troop(pq1, Alignment.PROPIO)));
+		map.addVertex(new Vertex("B", new Troop(pq2, Alignment.ALIADO)));
+		map.addVertex(new Vertex("C", new Troop(pq3, Alignment.ALIADO)));
+		map.addVertex(new Vertex("D", new Troop(pq4, Alignment.ENEMIGO)));
+		map.addVertex(new Vertex("E", new Troop(pq5, Alignment.ENEMIGO)));
 		
 		map.addPath("A", "B", 10);
 		map.addPath("C", "D", 15);
@@ -67,6 +67,6 @@ public class GrafoDemo {
 
 		System.out.println("------------");
 
-		System.out.println(map.obtenerCaminoMasCortoDesde("A", "E"));
+		System.out.println(map.getShortestPathFrom("A", "E"));
 	}
 }
